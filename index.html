@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Archivo Autodefinido · El País</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;1,400&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#18140f; --paper:#f5f0e8; --paper2:#ede8de; --paper3:#e2dcd2;
+  --accent:#b5311a; --blue:#d2f5fd; --blue2:#55cbe3; --border:#c5bfb3; --muted:#7a7368;
+  --cell:68px; --clue-bg:#ededeb; --cell-bg:#fff; --black-bg:#18140f;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh;}
+
+/* HEADER */
+.hdr{background:var(--ink);color:var(--paper);padding:.9rem 1.5rem;display:flex;align-items:center;gap:1rem;}
+.hdr h1{font-family:'Lora',serif;font-size:1.3rem;font-weight:500;}
+.hdr h1 em{color:#f2a07a;font-style:italic;}
+.hdr-sep{width:1px;height:20px;background:#3a3530;}
+.hdr-sub{font-size:.7rem;color:#908880;letter-spacing:.04em;}
+
+/* LAYOUT */
+.app{display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 50px);}
+@media(max-width:700px){.app{grid-template-columns:1fr;}}
+
+/* SIDEBAR */
+.sidebar{border-right:2px solid var(--ink);background:var(--paper2);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;}
+.sidebar-scroll{overflow-y:auto;flex:1;scrollbar-width:thin;}
+.cal-nav{display:flex;align-items:center;justify-content:space-between;padding:.7rem .9rem;border-bottom:1px solid var(--border);background:var(--paper2);position:sticky;top:0;z-index:5;}
+.cal-nav button{background:none;border:1px solid var(--border);width:26px;height:26px;cursor:pointer;font-size:.95rem;color:var(--ink);display:flex;align-items:center;justify-content:center;transition:all .12s;}
+.cal-nav button:hover{background:var(--ink);color:var(--paper);}
+.cal-nav button:disabled{opacity:.3;pointer-events:none;}
+.cal-month{font-family:'Lora',serif;font-size:.9rem;font-weight:500;text-transform:capitalize;}
+.cal-body{padding:.5rem .8rem .8rem;}
+.cal-weekdays{display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:3px;}
+.cal-wd{text-align:center;font-size:.58rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:3px 0;}
+.cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;}
+.cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:.74rem;border-radius:2px;color:var(--muted);transition:all .1s;cursor:default;position:relative;}
+.cal-day.has{background:var(--paper3);color:var(--ink);cursor:pointer;font-weight:500;}
+.cal-day.has:hover{background:var(--ink);color:var(--paper);}
+.cal-day.active{background:var(--accent)!important;color:#fff!important;}
+.cal-day.is-today::after{content:'';position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:3px;height:3px;border-radius:50%;background:var(--accent);}
+.cal-day.active.is-today::after{background:#fff;}
+.sidebar-stats{padding:.8rem;display:grid;grid-template-columns:1fr 1fr;gap:.45rem;border-top:1px solid var(--border);}
+.stat-box{background:var(--paper);border:1px solid var(--border);padding:.45rem .55rem;}
+.stat-num{font-family:'Lora',serif;font-size:1.4rem;font-weight:600;color:var(--accent);line-height:1;}
+.stat-lbl{font-size:.58rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-top:2px;}
+
+/* MAIN */
+.main{padding:1.2rem 1.5rem;overflow:hidden;}
+.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;text-align:center;color:var(--muted);gap:.7rem;}
+.empty-state h2{font-family:'Lora',serif;font-size:1.2rem;color:var(--ink);}
+.empty-state p{font-size:.82rem;max-width:280px;line-height:1.6;}
+
+/* GAME HEADER */
+.game-hdr{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.6rem;margin-bottom:1rem;padding-bottom:.8rem;border-bottom:2px solid var(--ink);}
+.game-title{font-family:'Lora',serif;font-size:1.3rem;font-style:italic;font-weight:400;}
+.game-controls{display:flex;gap:.4rem;align-items:center;}
+.btn-ctrl{background:none;border:1px solid var(--border);padding:.3rem .7rem;font-size:.68rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;color:var(--ink);font-family:'IBM Plex Sans',sans-serif;transition:all .12s;}
+.btn-ctrl:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.btn-ctrl.primary{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.btn-ctrl.primary:hover{background:var(--accent);border-color:var(--accent);}
+
+/* TIMER */
+.timer{font-family:'IBM Plex Mono',monospace;font-size:.85rem;background:var(--paper3);border:1px solid var(--border);padding:.3rem .6rem;letter-spacing:.05em;}
+
+/* BOARD */
+#board-wrap{overflow-x:auto;margin-bottom:1.2rem;}
+#board{display:inline-grid;border:2px solid var(--ink);background:var(--ink);gap:1px;user-select:none;}
+
+/* CELLS */
+.cell{width:var(--cell);height:var(--cell);position:relative;display:flex;align-items:center;justify-content:center;}
+.cell-black{background:var(--black-bg);}
+.cell-play{background:var(--cell-bg);cursor:text;}
+.cell-play.selected{background:var(--blue);}
+.cell-play.word-selected{background:#e8f7ff;}
+.cell-play.correct{background:#c8f0c8;}
+.cell-play.wrong{background:#fdd;}
+.cell-play input{
+  position:absolute;inset:0;width:100%;height:100%;
+  border:none;outline:none;background:transparent;
+  text-align:center;font-size:1.4rem;font-weight:600;text-transform:uppercase;
+  font-family:'IBM Plex Mono',monospace;color:var(--ink);cursor:pointer;
+  caret-color:transparent;
+}
+.cell-play.selected input{background:transparent;}
+
+/* CLUE CELLS */
+.cell-clue{background:var(--clue-bg);font-size:.56rem;font-weight:500;text-transform:uppercase;line-height:1.2;color:#444;padding:3px 4px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;cursor:default;}
+.cell-clue .clue-top{flex:1;display:flex;align-items:center;width:100%;}
+.cell-clue .clue-bot{flex:1;display:flex;align-items:flex-end;width:100%;border-top:1px solid #c0bab4;padding-top:2px;margin-top:2px;}
+.cell-clue span{display:block;line-height:1.15;}
+.cell-clue .arrow{flex-shrink:0;margin-left:2px;font-size:.65rem;}
+
+/* STATUS BAR */
+.status-bar{background:var(--paper3);border:1px solid var(--border);padding:.5rem .8rem;font-size:.8rem;margin-bottom:1rem;display:none;}
+.status-bar.show{display:block;}
+.status-ok{color:#2d7a2d;font-weight:500;}
+.status-err{color:var(--accent);}
+
+/* SPINNER */
+.spinner-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:.8rem;color:var(--muted);}
+.spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* MODAL WIN */
+.modal-overlay{position:fixed;inset:0;background:#0007;z-index:100;display:none;align-items:center;justify-content:center;}
+.modal-overlay.show{display:flex;}
+.modal{background:var(--paper);border:2px solid var(--ink);padding:2rem;max-width:400px;width:90%;text-align:center;}
+.modal h2{font-family:'Lora',serif;font-size:1.5rem;margin-bottom:.5rem;}
+.modal p{color:var(--muted);font-size:.85rem;margin-bottom:1.2rem;}
+.modal .time-display{font-family:'IBM Plex Mono',monospace;font-size:2rem;color:var(--accent);margin:.5rem 0;}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <h1>Archivo <em>Autodefinido</em></h1>
+  <div class="hdr-sep"></div>
+  <div class="hdr-sub">El País · colección histórica</div>
+</header>
+
+<div class="app">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-scroll">
+      <div class="cal-nav">
+        <button id="btn-prev">&#8249;</button>
+        <span class="cal-month" id="cal-month-label">—</span>
+        <button id="btn-next">&#8250;</button>
+      </div>
+      <div class="cal-body">
+        <div class="cal-weekdays">
+          <div class="cal-wd">Lu</div><div class="cal-wd">Ma</div><div class="cal-wd">Mi</div>
+          <div class="cal-wd">Ju</div><div class="cal-wd">Vi</div><div class="cal-wd">Sa</div><div class="cal-wd">Do</div>
+        </div>
+        <div class="cal-days" id="cal-days"></div>
+      </div>
+    </div>
+    <div class="sidebar-stats">
+      <div class="stat-box"><div class="stat-num" id="st-total">—</div><div class="stat-lbl">Guardados</div></div>
+      <div class="stat-box"><div class="stat-num" id="st-streak">—</div><div class="stat-lbl">Racha</div></div>
+      <div class="stat-box"><div class="stat-num" id="st-clues">—</div><div class="stat-lbl">Pistas</div></div>
+      <div class="stat-box"><div class="stat-num" id="st-from">—</div><div class="stat-lbl">Desde</div></div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main" id="main">
+    <div class="empty-state">
+      <div style="font-size:2.5rem;opacity:.3">📰</div>
+      <h2>Selecciona un día</h2>
+      <p>Los días marcados tienen autodefinido guardado. Haz clic para jugar.</p>
+    </div>
+  </main>
+</div>
+
+<!-- WIN MODAL -->
+<div class="modal-overlay" id="modal-win">
+  <div class="modal">
+    <h2>¡Completado! 🎉</h2>
+    <p>Has resuelto el autodefinido del día</p>
+    <div class="time-display" id="modal-time">00:00</div>
+    <p style="font-size:.75rem;color:var(--muted)">Tiempo empleado</p>
+    <br>
+    <button class="btn-ctrl primary" onclick="document.getElementById('modal-win').classList.remove('show')">Cerrar</button>
+  </div>
+</div>
+
+<script>
+const DATA = './data';
+const MONTHS_ES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const MONTHS_LONG = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+const CELL_SIZE = 68; // px, debe coincidir con --cell en CSS
+
+let availableDates = new Set();
+let calYear, calMonth, currentDate = null;
+let puzzle = null; // datos del puzzle actual
+let timerInterval = null, timerSeconds = 0;
+let gameFinished = false;
+// wordId -> lista de celdas {col,row,input}
+let wordMap = {};
+// Celda actualmente seleccionada
+let selCol = -1, selRow = -1, selWordId = null, selDir = null;
+
+// ──────────────────────────────────────────────────────────────────────
+// INIT
+// ──────────────────────────────────────────────────────────────────────
+async function init() {
+  const now = new Date();
+  calYear = now.getFullYear(); calMonth = now.getMonth();
+  try {
+    const r = await fetch(DATA + '/index.json');
+    if (!r.ok) throw new Error();
+    const idx = await r.json();
+    availableDates = new Set(idx.dates || []);
+    updateStats(idx);
+    if (idx.dates && idx.dates.length > 0) {
+      const [y,m] = idx.dates[0].split('-').map(Number);
+      calYear = y; calMonth = m - 1;
+      renderCalendar();
+      loadPuzzle(idx.dates[0]);
+    } else { renderCalendar(); }
+  } catch {
+    renderCalendar();
+    document.getElementById('main').innerHTML = `<div class="empty-state"><div style="font-size:2rem;opacity:.3">📭</div><h2>Sin datos todavía</h2><p>Ejecuta el workflow de GitHub Actions para empezar a guardar puzzles.</p></div>`;
+  }
+}
+
+// ──────────────────────────────────────────────────────────────────────
+// CALENDARIO
+// ──────────────────────────────────────────────────────────────────────
+function toIso(y,m,d){return y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');}
+
+function renderCalendar() {
+  document.getElementById('cal-month-label').textContent = MONTHS_ES[calMonth]+' '+calYear;
+  const dates = [...availableDates].sort();
+  let minY=calYear,minM=calMonth,maxY=calYear,maxM=calMonth;
+  if(dates.length>0){
+    const p=dates[0].split('-').map(Number); minY=p[0];minM=p[1]-1;
+    const q=dates[dates.length-1].split('-').map(Number); maxY=q[0];maxM=q[1]-1;
+  }
+  document.getElementById('btn-prev').disabled = calYear<minY||(calYear===minY&&calMonth<=minM);
+  document.getElementById('btn-next').disabled = calYear>maxY||(calYear===maxY&&calMonth>=maxM);
+  const firstDay = new Date(calYear,calMonth,1).getDay();
+  const offset = firstDay===0?6:firstDay-1;
+  const days = new Date(calYear,calMonth+1,0).getDate();
+  const today = new Date();
+  const todayStr = toIso(today.getFullYear(),today.getMonth(),today.getDate());
+  const c = document.getElementById('cal-days');
+  c.innerHTML='';
+  for(let i=0;i<offset;i++){const e=document.createElement('div');e.className='cal-day';c.appendChild(e);}
+  for(let d=1;d<=days;d++){
+    const iso=toIso(calYear,calMonth,d);
+    const e=document.createElement('div');e.className='cal-day';e.textContent=d;
+    if(availableDates.has(iso)){e.classList.add('has');e.onclick=()=>loadPuzzle(iso);}
+    if(iso===todayStr)e.classList.add('is-today');
+    if(iso===currentDate)e.classList.add('active');
+    c.appendChild(e);
+  }
+}
+document.getElementById('btn-prev').onclick=()=>{calMonth--;if(calMonth<0){calMonth=11;calYear--;}renderCalendar();};
+document.getElementById('btn-next').onclick=()=>{calMonth++;if(calMonth>11){calMonth=0;calYear++;}renderCalendar();};
+
+// ──────────────────────────────────────────────────────────────────────
+// CARGAR PUZZLE
+// ──────────────────────────────────────────────────────────────────────
+async function loadPuzzle(iso) {
+  stopTimer();
+  currentDate=iso; renderCalendar();
+  document.getElementById('main').innerHTML=`<div class="spinner-wrap"><div class="spinner"></div><span>Cargando ${iso}…</span></div>`;
+  try {
+    const r = await fetch(DATA+'/'+iso+'.json');
+    if(!r.ok) throw new Error('No encontrado');
+    puzzle = await r.json();
+    document.getElementById('st-clues').textContent = puzzle.total_clues;
+    renderGame();
+  } catch(e) {
+    document.getElementById('main').innerHTML=`<div class="empty-state"><h2>Error</h2><p>${e.message}</p></div>`;
+  }
+}
+
+// ──────────────────────────────────────────────────────────────────────
+// RENDER JUEGO
+// ──────────────────────────────────────────────────────────────────────
+function renderGame() {
+  gameFinished=false;
+  wordMap={};
+  selCol=-1;selRow=-1;selWordId=null;selDir=null;
+
+  const board = puzzle.board; // array de celdas
+  const words = puzzle.words; // {vertical:[...], horizontal:[...]}
+  const cols = puzzle.grid_cols;
+  const rows = puzzle.grid_rows;
+  const [y,m,d] = puzzle.date.split('-');
+  const dateStr = parseInt(d)+' de '+MONTHS_LONG[parseInt(m)-1]+' de '+y;
+
+  // Construir mapa col,row -> celda del board
+  const cellMap = {};
+  for(const cell of board) cellMap[cell.col+','+cell.row] = cell;
+
+  // Construir mapa wordId -> {cells, direction}
+  // Horizontal words
+  for(const w of (words.horizontal||[])) {
+    wordMap[w.wordId] = {cells:[], dir:'right', solution:w.solution};
+  }
+  // Vertical words
+  for(const w of (words.vertical||[])) {
+    wordMap[w.wordId] = {cells:[], dir:'bottom', solution:w.solution};
+  }
+
+  const [py,pm,pd] = puzzle.date.split('-');
+
+  // HTML del juego
+  document.getElementById('main').innerHTML = `
+    <div class="game-hdr">
+      <div class="game-title">${parseInt(pd)} de ${MONTHS_LONG[parseInt(pm)-1]} de ${py}</div>
+      <div class="game-controls">
+        <span class="timer" id="timer-display">00:00</span>
+        <button class="btn-ctrl" onclick="revealAll()">Revelar</button>
+        <button class="btn-ctrl" onclick="checkAll()">Verificar</button>
+        <button class="btn-ctrl" onclick="clearAll()">Borrar</button>
+      </div>
+    </div>
+    <div class="status-bar" id="status-bar"></div>
+    <div id="board-wrap"><div id="board"></div></div>
+  `;
+
+  const boardEl = document.getElementById('board');
+  boardEl.style.gridTemplateColumns = `repeat(${cols}, ${CELL_SIZE}px)`;
+  boardEl.style.gridTemplateRows = `repeat(${rows}, ${CELL_SIZE}px)`;
+
+  // Crear celdas
+  for(let row=0;row<rows;row++){
+    for(let col=0;col<cols;col++){
+      const key = col+','+row;
+      const cell = cellMap[key];
+      const el = document.createElement('div');
+      el.dataset.col=col; el.dataset.row=row;
+
+      if(!cell) {
+        // celda negra
+        el.className='cell cell-black';
+      } else if(cell.type==='cell') {
+        // celda jugable
+        el.className='cell cell-play';
+        el.dataset.solution=cell.solution;
+        const inp = document.createElement('input');
+        inp.type='text'; inp.maxLength=1; inp.autocomplete='off';
+        inp.dataset.col=col; inp.dataset.row=row;
+        el.appendChild(inp);
+        inp.addEventListener('click', ()=>onCellClick(col,row,inp));
+        inp.addEventListener('keydown', e=>onKeyDown(e,col,row,inp));
+        inp.addEventListener('input', e=>onInput(e,col,row,inp));
+        // Registrar en wordMap
+        for(const wid of (cell.wordIds||[])) {
+          if(wordMap[wid]) wordMap[wid].cells.push({col,row,el,inp});
+        }
+      } else if(cell.type==='clue'||cell.type==='clues') {
+        // celda de pista
+        el.className='cell cell-clue';
+        if(cell.type==='clue'){
+          const arrow = arrowChar(cell.orientation?.to);
+          el.innerHTML=`<div class="clue-top"><span>${fmtClue(cell.value)}</span><span class="arrow">${arrow}</span></div>`;
+        } else {
+          // doble pista
+          const v = cell.values||[];
+          const o = cell.orientations||[];
+          const a0 = arrowChar(o[0]?.to); const a1 = arrowChar(o[1]?.to);
+          el.innerHTML=`
+            <div class="clue-top"><span>${fmtClue(v[0]||'')}</span><span class="arrow">${a0}</span></div>
+            <div class="clue-bot"><span>${fmtClue(v[1]||'')}</span><span class="arrow">${a1}</span></div>`;
+        }
+      } else {
+        el.className='cell cell-black';
+      }
+      boardEl.appendChild(el);
+    }
+  }
+
+  // Iniciar timer
+  startTimer();
+}
+
+function fmtClue(s){
+  return (s||'').replace(/\\n/g,'<br>').replace(/\n/g,'<br>');
+}
+function arrowChar(dir){
+  if(dir==='right') return '→';
+  if(dir==='bottom'||dir==='down') return '↓';
+  if(dir==='left') return '←';
+  if(dir==='top'||dir==='up') return '↑';
+  return '';
+}
+
+// ──────────────────────────────────────────────────────────────────────
+// INTERACCIÓN
+// ──────────────────────────────────────────────────────────────────────
+function onCellClick(col,row,inp){
+  if(gameFinished) return;
+  inp.focus();
+  // Si ya está seleccionada la misma celda, cambiar dirección
+  if(selCol===col && selRow===row) {
+    // cambiar dirección
+    const newDir = selDir==='right'?'bottom':'right';
+    const wid = findWordAt(col,row,newDir);
+    if(wid) { selDir=newDir; selWordId=wid; }
+  } else {
+    selCol=col; selRow=row;
+    // intentar mantener dirección, o elegir la que tenga palabra
+    const widH = findWordAt(col,row,'right');
+    const widV = findWordAt(col,row,'bottom');
+    if(selDir==='right'&&widH) selWordId=widH;
+    else if(selDir==='bottom'&&widV) selWordId=widV;
+    else if(widH){ selDir='right'; selWordId=widH; }
+    else if(widV){ selDir='bottom'; selWordId=widV; }
+    else { selDir='right'; selWordId=null; }
+  }
+  highlightSelection();
+}
+
+function findWordAt(col,row,dir){
+  for(const [wid,w] of Object.entries(wordMap)){
+    if(w.dir===dir && w.cells.some(c=>c.col===col&&c.row===row)) return parseInt(wid);
+  }
+  return null;
+}
+
+function highlightSelection(){
+  // Quitar highlights
+  document.querySelectorAll('.cell-play').forEach(el=>{
+    el.classList.remove('selected','word-selected');
+  });
+  if(selWordId===null) return;
+  const w = wordMap[selWordId];
+  if(!w) return;
+  // Highlight de la palabra
+  for(const c of w.cells){
+    c.el.classList.add('word-selected');
+  }
+  // Highlight de la celda actual
+  const curEl = document.querySelector(`.cell-play[data-col="${selCol}"][data-row="${selRow}"]`);
+  if(curEl){ curEl.classList.remove('word-selected'); curEl.classList.add('selected'); }
+}
+
+function onKeyDown(e,col,row,inp){
+  if(gameFinished) return;
+  if(e.key==='ArrowRight'){ e.preventDefault(); moveDir(col,row,'right'); }
+  else if(e.key==='ArrowLeft'){ e.preventDefault(); moveDir(col,row,'left'); }
+  else if(e.key==='ArrowDown'){ e.preventDefault(); moveDir(col,row,'down'); }
+  else if(e.key==='ArrowUp'){ e.preventDefault(); moveDir(col,row,'up'); }
+  else if(e.key==='Backspace'||e.key==='Delete'){
+    if(inp.value===''){
+      e.preventDefault();
+      // Retroceder
+      if(selDir==='right') moveDir(col,row,'left');
+      else moveDir(col,row,'up');
+    } else {
+      inp.value='';
+      inp.closest('.cell-play').classList.remove('correct','wrong');
+    }
+  } else if(e.key==='Tab'){
+    e.preventDefault();
+    nextWord(e.shiftKey);
+  }
+}
+
+function onInput(e,col,row,inp){
+  if(gameFinished) return;
+  const v = inp.value.toUpperCase().replace(/[^A-ZÁÉÍÓÚÜÑ]/g,'');
+  inp.value = v ? v[v.length-1] : '';
+  if(inp.value) {
+    inp.closest('.cell-play').classList.remove('correct','wrong');
+    // avanzar automáticamente
+    if(selDir==='right') moveDir(col,row,'right');
+    else if(selDir==='bottom') moveDir(col,row,'down');
+    // Comprobar si completado
+    checkComplete();
+  }
+}
+
+function moveDir(col,row,dir){
+  let nc=col,nr=row;
+  if(dir==='right')nc++;
+  else if(dir==='left')nc--;
+  else if(dir==='down')nr++;
+  else if(dir==='up')nr--;
+  const target = document.querySelector(`.cell-play[data-col="${nc}"][data-row="${nr}"]`);
+  if(target){
+    selCol=nc; selRow=nr;
+    // actualizar palabra si cambiamos dirección por flecha
+    if(dir==='right'||dir==='left') selDir='right';
+    else selDir='bottom';
+    const wid = findWordAt(nc,nr,selDir)||findWordAt(nc,nr,selDir==='right'?'bottom':'right');
+    if(!findWordAt(nc,nr,selDir)&&wid){ selDir=selDir==='right'?'bottom':'right'; selWordId=wid; }
+    else selWordId=findWordAt(nc,nr,selDir)||null;
+    highlightSelection();
+    target.querySelector('input').focus();
+  }
+}
+
+function nextWord(prev=false){
+  const wids = Object.keys(wordMap).map(Number).sort((a,b)=>a-b);
+  if(!wids.length) return;
+  const idx = wids.indexOf(selWordId);
+  let next = prev ? (idx-1+wids.length)%wids.length : (idx+1)%wids.length;
+  const w = wordMap[wids[next]];
+  if(w&&w.cells.length){
+    const c = w.cells[0];
+    selWordId=wids[next]; selDir=w.dir; selCol=c.col; selRow=c.row;
+    highlightSelection();
+    c.inp.focus();
+  }
+}
+
+// ──────────────────────────────────────────────────────────────────────
+// ACCIONES
+// ──────────────────────────────────────────────────────────────────────
+function checkAll(){
+  let errors=0, empty=0;
+  document.querySelectorAll('.cell-play').forEach(el=>{
+    const inp=el.querySelector('input');
+    const sol=el.dataset.solution?.toUpperCase()||'';
+    if(!inp.value){empty++;return;}
+    if(inp.value.toUpperCase()===sol){el.classList.add('correct');el.classList.remove('wrong');}
+    else{el.classList.add('wrong');el.classList.remove('correct');errors++;}
+  });
+  const bar=document.getElementById('status-bar');
+  if(empty>0){bar.innerHTML=`<span class="status-err">Faltan ${empty} celdas por rellenar.</span>`;bar.className='status-bar show';}
+  else if(errors>0){bar.innerHTML=`<span class="status-err">${errors} celda(s) incorrecta(s).</span>`;bar.className='status-bar show';}
+  else{bar.innerHTML=`<span class="status-ok">¡Todo correcto!</span>`;bar.className='status-bar show';}
+}
+
+function revealAll(){
+  document.querySelectorAll('.cell-play').forEach(el=>{
+    const inp=el.querySelector('input');
+    const sol=el.dataset.solution||'';
+    inp.value=sol;
+    el.classList.add('correct');el.classList.remove('wrong');
+  });
+  stopTimer(); gameFinished=true;
+  showStatus('<span class="status-ok">Puzzle revelado.</span>');
+}
+
+function clearAll(){
+  document.querySelectorAll('.cell-play').forEach(el=>{
+    el.querySelector('input').value='';
+    el.classList.remove('correct','wrong');
+  });
+  const bar=document.getElementById('status-bar');
+  if(bar) bar.className='status-bar';
+}
+
+function showStatus(html){
+  const bar=document.getElementById('status-bar');
+  if(bar){bar.innerHTML=html;bar.className='status-bar show';}
+}
+
+function checkComplete(){
+  const all = document.querySelectorAll('.cell-play');
+  for(const el of all){
+    const inp=el.querySelector('input');
+    const sol=el.dataset.solution?.toUpperCase()||'';
+    if(!inp.value||(inp.value.toUpperCase()!==sol)) return;
+  }
+  // ¡Todo correcto!
+  stopTimer(); gameFinished=true;
+  document.getElementById('modal-time').textContent=formatTime(timerSeconds);
+  document.getElementById('modal-win').classList.add('show');
+}
+
+// ──────────────────────────────────────────────────────────────────────
+// TIMER
+// ──────────────────────────────────────────────────────────────────────
+function startTimer(){
+  timerSeconds=0; updateTimerDisplay();
+  timerInterval=setInterval(()=>{timerSeconds++;updateTimerDisplay();},1000);
+}
+function stopTimer(){clearInterval(timerInterval);timerInterval=null;}
+function updateTimerDisplay(){
+  const el=document.getElementById('timer-display');
+  if(el) el.textContent=formatTime(timerSeconds);
+}
+function formatTime(s){
+  const m=Math.floor(s/60);
+  return String(m).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+}
+
+// ──────────────────────────────────────────────────────────────────────
+// STATS
+// ──────────────────────────────────────────────────────────────────────
+function updateStats(idx){
+  document.getElementById('st-total').textContent=idx.total||0;
+  const dates=(idx.dates||[]).slice().sort().reverse();
+  if(dates.length>0){
+    document.getElementById('st-from').textContent=dates[dates.length-1].slice(0,7);
+    let streak=0;
+    const todayMs=Date.now();
+    for(let i=0;i<dates.length;i++){
+      const diff=Math.round((todayMs-new Date(dates[i]).getTime())/86400000);
+      if(diff===i||diff===i+1)streak++;else break;
+    }
+    document.getElementById('st-streak').textContent=streak;
+  }
+}
+
+// ──────────────────────────────────────────────────────────────────────
+// ARRANQUE
+// ──────────────────────────────────────────────────────────────────────
+init();
+</script>
+</body>
+</html>
