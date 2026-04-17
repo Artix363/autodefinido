@@ -1,0 +1,378 @@
+{
+  "date": "2026-04-17",
+  "scraped_at": "2026-04-17T19:16:26.468775Z",
+  "source": "https://backend.smartgames.media/api/game/self_defined/last",
+  "grid_cols": 10,
+  "grid_rows": 12,
+  "grid": [
+    [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      1,
+      2,
+      2
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      2,
+      1,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      2,
+      1,
+      1,
+      1,
+      1,
+      2,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      2,
+      1,
+      2,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      1,
+      1
+    ],
+    [
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      1,
+      2,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      2,
+      1,
+      1,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2
+    ],
+    [
+      2,
+      1,
+      1,
+      1,
+      1,
+      2,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  ],
+  "clues": [
+    {
+      "text": "COLECTIVO EN ACCIÓN",
+      "col": 0,
+      "row": 0,
+      "direction": "right"
+    },
+    {
+      "text": "LA ISLA MÁS GRANDE DEL MUNDO",
+      "col": 1,
+      "row": 0,
+      "direction": "bottom"
+    },
+    {
+      "text": "RADIO",
+      "col": 2,
+      "row": 0,
+      "direction": "bottom"
+    },
+    {
+      "text": "UNIVERS. AUTÓNOMA DE TAMAU- LIPAS",
+      "col": 3,
+      "row": 0,
+      "direction": "bottom"
+    },
+    {
+      "text": "VEGETAL DEL SUELO",
+      "col": 4,
+      "row": 0,
+      "direction": "bottom"
+    },
+    {
+      "text": "ANTE MERIDIEM",
+      "col": 5,
+      "row": 0,
+      "direction": "bottom"
+    },
+    {
+      "text": "MARINERO CUIDADOR",
+      "col": 6,
+      "row": 0,
+      "direction": "bottom"
+    },
+    {
+      "text": "SOPA BÁSICA",
+      "col": 6,
+      "row": 0,
+      "direction": "bottom"
+    },
+    {
+      "text": "ROGARÉ",
+      "col": 8,
+      "row": 0,
+      "direction": "bottom"
+    },
+    {
+      "text": "\"LAS...\" LAS CINCUENTA HIJAS DE NEREO Y DE DORIS",
+      "col": 9,
+      "row": 0,
+      "direction": "bottom"
+    },
+    {
+      "text": "RADIO",
+      "col": 0,
+      "row": 2,
+      "direction": "right"
+    },
+    {
+      "text": "OCRE ROJIZO",
+      "col": 2,
+      "row": 2,
+      "direction": "right"
+    },
+    {
+      "text": "ELIGE, ESCOGE",
+      "col": 0,
+      "row": 3,
+      "direction": "right"
+    },
+    {
+      "text": "ARMAR UN CIGARRO",
+      "col": 5,
+      "row": 3,
+      "direction": "right"
+    },
+    {
+      "text": "PLIEGUE CUTÁNEO",
+      "col": 5,
+      "row": 3,
+      "direction": "bottom"
+    },
+    {
+      "text": "ENERGÍA",
+      "col": 0,
+      "row": 4,
+      "direction": "right"
+    },
+    {
+      "text": "LA POLICIA DE EUROPA",
+      "col": 2,
+      "row": 4,
+      "direction": "bottom"
+    },
+    {
+      "text": "NO ME AHOGARÉ",
+      "col": 3,
+      "row": 4,
+      "direction": "right"
+    },
+    {
+      "text": "JUNTEN, PEGUEN",
+      "col": 3,
+      "row": 4,
+      "direction": "bottom"
+    },
+    {
+      "text": "IMPARCIAL, INDI- FERENTE",
+      "col": 0,
+      "row": 5,
+      "direction": "right"
+    },
+    {
+      "text": "ENRIQUE IGLESIAS",
+      "col": 7,
+      "row": 5,
+      "direction": "right"
+    },
+    {
+      "text": "RESPUESTA AMABLE",
+      "col": 7,
+      "row": 5,
+      "direction": "bottom"
+    },
+    {
+      "text": "MANCHA CUTÁNEA",
+      "col": 0,
+      "row": 6,
+      "direction": "right"
+    },
+    {
+      "text": "... CROFT DE TOM RIDER",
+      "col": 0,
+      "row": 6,
+      "direction": "right"
+    },
+    {
+      "text": "PERSONAJE FICTICIO DE SACHA BARON COHEN",
+      "col": 6,
+      "row": 6,
+      "direction": "bottom"
+    },
+    {
+      "text": "CUBRIR DE ORO",
+      "col": 8,
+      "row": 6,
+      "direction": "bottom"
+    },
+    {
+      "text": "CIUDAD DE SABINA",
+      "col": 4,
+      "row": 7,
+      "direction": "right"
+    },
+    {
+      "text": "REMOLCA LA NAVE",
+      "col": 4,
+      "row": 7,
+      "direction": "bottom"
+    },
+    {
+      "text": "POLÍ- GONOS DE NUEVE LADOS",
+      "col": 0,
+      "row": 8,
+      "direction": "right"
+    },
+    {
+      "text": "DISTRITO POSTAL",
+      "col": 0,
+      "row": 9,
+      "direction": "right"
+    },
+    {
+      "text": "SEÑALAR LA TARA",
+      "col": 3,
+      "row": 9,
+      "direction": "right"
+    },
+    {
+      "text": "DESPUÉS DE CRISTO",
+      "col": 3,
+      "row": 9,
+      "direction": "bottom"
+    },
+    {
+      "text": "NARCÓ- TICOS ANÓNIMOS",
+      "col": 9,
+      "row": 9,
+      "direction": "bottom"
+    },
+    {
+      "text": "ELEMENTO QUÍMICO NÚMERO 53",
+      "col": 0,
+      "row": 10,
+      "direction": "right"
+    },
+    {
+      "text": "EL PRIMER HOMBRE",
+      "col": 5,
+      "row": 10,
+      "direction": "right"
+    },
+    {
+      "text": "NÚCLEO",
+      "col": 5,
+      "row": 10,
+      "direction": "bottom"
+    },
+    {
+      "text": "MUNICIPIO ESPAÑOL, CÁCERES",
+      "col": 0,
+      "row": 11,
+      "direction": "right"
+    }
+  ],
+  "total_clues": 37
+}
