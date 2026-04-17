@@ -20,23 +20,57 @@ except ImportError:
 
 URL = "https://elpais.com/juegos/autodefinido/diario/dia/"
 
+# Cabeceras que imitan un navegador real
 HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
         "AppleWebKit/537.36 (KHTML, like Gecko) "
         "Chrome/124.0.0.0 Safari/537.36"
     ),
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-    "Accept-Language": "es-ES,es;q=0.9",
-    "Referer": "https://elpais.com/juegos/",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    "Accept-Language": "es-ES,es;q=0.9,en;q=0.8",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Connection": "keep-alive",
+    "Upgrade-Insecure-Requests": "1",
+    "Sec-Fetch-Dest": "document",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Site": "same-origin",
+    "Sec-Fetch-User": "?1",
+    "Cache-Control": "max-age=0",
 }
 
 
 def fetch_html(url: str) -> str:
-    """Descarga el HTML de la página."""
-    resp = requests.get(url, headers=HEADERS, timeout=30)
+    """Descarga el HTML de la página simulando un navegador real."""
+    session = requests.Session()
+
+    # Primero visitamos la portada de juegos para obtener cookies
+    try:
+        session.get(
+            "https://elpais.com/juegos/",
+            headers=HEADERS,
+            timeout=20
+        )
+    except Exception:
+        pass  # Si falla la portada, seguimos igualmente
+
+    # Ahora pedimos la página del autodefinido con Referer real
+    headers_with_referer = {**HEADERS, "Referer": "https://elpais.com/juegos/"}
+    resp = session.get(url, headers=headers_with_referer, timeout=30)
     resp.raise_for_status()
-    return resp.text
+
+    html = resp.text
+    print(f"  HTTP {resp.status_code}, {len(html):,} bytes, encoding: {resp.encoding}")
+
+    # Diagnóstico: si el HTML es muy pequeño, probablemente hay un muro
+    if len(html) < 50_000:
+        print("  AVISO: HTML muy pequeño, puede ser una página de bloqueo o suscripción")
+        # Guardar muestra para depuración
+        with open("/tmp/debug_elpais.html", "w", encoding="utf-8") as f:
+            f.write(html[:5000])
+        print("  Muestra guardada en /tmp/debug_elpais.html")
+
+    return html
 
 
 def parse_tspan_text(g_element) -> str:
@@ -102,16 +136,43 @@ def parse_autodefinido(html: str) -> dict:
     """Parsea el HTML y extrae toda la información del autodefinido."""
     soup = BeautifulSoup(html, "lxml")
 
-    # Encontrar el SVG del juego
+    # Encontrar el SVG del juego — intentamos varias estrategias
+    svg = None
+
+    # 1. Buscar por viewBox exacto conocido
     svg = soup.find("svg", attrs={"viewBox": "0 0 802 962"})
+
+    # 2. Buscar dentro del div del juego
     if not svg:
-        # Intentar encontrar cualquier SVG grande dentro del juego
         game_div = soup.find("div", id="self-defined-game")
         if game_div:
             svg = game_div.find("svg")
-    
+
+    # 3. Buscar cualquier SVG grande con celdas (tiene muchos <g transform>)
     if not svg:
-        raise ValueError("No se encontró el SVG del autodefinido en el HTML")
+        for candidate in soup.find_all("svg"):
+            groups = candidate.find_all("g", attrs={"transform": True})
+            if len(groups) > 20:
+                svg = candidate
+                break
+
+    # 4. Si sigue sin encontrarse, dar diagnóstico útil
+    if not svg:
+        all_svgs = soup.find_all("svg")
+        game_divs = soup.find_all("div", id=lambda x: x and "game" in x.lower())
+        title = soup.find("title")
+        print(f"  Diagnóstico: {len(all_svgs)} SVGs en página, "
+              f"{len(game_divs)} divs de juego, "
+              f"título: {title.text if title else 'sin título'}")
+        # ¿Hay muro de suscripción?
+        if soup.find(class_=lambda c: c and "paywall" in str(c).lower()):
+            raise ValueError("El País está mostrando un muro de suscripción. "
+                             "Prueba a ejecutar el scraper más tarde.")
+        raise ValueError(
+            f"No se encontró el SVG del autodefinido. "
+            f"SVGs en página: {len(all_svgs)}. "
+            f"Puede que El País haya cambiado el HTML o esté bloqueando el acceso."
+        )
 
     # Extraer fecha
     puzzle_date = extract_date_from_html(soup)
