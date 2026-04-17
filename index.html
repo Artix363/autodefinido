@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Archivo Autodefinido · El País</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1410;
+      --paper: #f7f3ec;
+      --paper-dark: #ede8df;
+      --accent: #c8371a;
+      --accent-light: #f2e8e5;
+      --blue-cell: #d2f5fd;
+      --clue-bg: #f5f5f5;
+      --border: #c9c3b8;
+      --border-dark: #8a8278;
+      --muted: #7a7068;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+    header {
+      border-bottom: 3px solid var(--ink);
+      padding: 1.5rem 2rem 1.2rem;
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      background: var(--paper);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    header h1 span {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .header-sub {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-left: 1px solid var(--border);
+      padding-left: 1.5rem;
+    }
+
+    /* LAYOUT */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 768px) {
+      .container { grid-template-columns: 1fr; padding: 1rem; }
+      header { flex-wrap: wrap; gap: 0.5rem; }
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      position: sticky;
+      top: 90px;
+    }
+
+    .sidebar-section {
+      border: 1px solid var(--border);
+      background: white;
+      margin-bottom: 1.2rem;
+    }
+
+    .sidebar-title {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.6rem 0.9rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--paper-dark);
+    }
+
+    /* BUSCADOR */
+    #search-input {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
+      background: transparent;
+      color: var(--ink);
+      outline: none;
+    }
+    #search-input::placeholder { color: var(--border-dark); }
+
+    /* CALENDARIO DE FECHAS */
+    #date-list {
+      max-height: 380px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+    }
+
+    .date-item {
+      display: block;
+      padding: 0.55rem 0.9rem;
+      border-bottom: 1px solid var(--paper-dark);
+      cursor: pointer;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.82rem;
+      text-decoration: none;
+      color: var(--ink);
+      transition: background 0.1s;
+    }
+    .date-item:hover { background: var(--accent-light); }
+    .date-item.active {
+      background: var(--ink);
+      color: var(--paper);
+      font-weight: 500;
+    }
+    .date-item span {
+      float: right;
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+    .date-item.active span { color: var(--paper-dark); }
+
+    /* STATS */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .stat {
+      padding: 0.8rem;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .stat:nth-child(2n) { border-right: none; }
+    .stat:nth-last-child(-n+2) { border-bottom: none; }
+    .stat-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    /* PANEL PRINCIPAL */
+    .main-panel {
+      min-height: 400px;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .puzzle-date {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    .puzzle-meta {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    /* CUADRÍCULA */
+    #grid-container {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 2rem;
+      overflow-x: auto;
+    }
+
+    #grid-svg {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border: 2px solid var(--ink);
+    }
+
+    /* PISTAS */
+    .clues-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    @media (max-width: 600px) {
+      .clues-section { grid-template-columns: 1fr; }
+    }
+
+    .clues-group h3 {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .clues-group h3 svg {
+      color: var(--accent);
+    }
+
+    .clue-item {
+      display: flex;
+      gap: 0.6rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.84rem;
+      line-height: 1.4;
+      padding: 0.35rem 0.5rem;
+      border-left: 2px solid transparent;
+      transition: all 0.1s;
+    }
+    .clue-item:hover {
+      border-left-color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    .clue-pos {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      flex-shrink: 0;
+      padding-top: 0.05rem;
+      min-width: 28px;
+    }
+
+    /* ESTADO DE CARGA */
+    .loading {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--muted);
+    }
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 1rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .error-msg {
+      background: var(--accent-light);
+      border: 1px solid var(--accent);
+      padding: 1rem;
+      font-size: 0.85rem;
+      margin: 1rem 0;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 5rem 2rem;
+      color: var(--muted);
+    }
+    .empty-state h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--ink);
+    }
+
+    /* TOOLTIP info */
+    .info-bar {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 0.6rem 1rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.03em;
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .info-bar strong { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Archivo <span>Autodefinido</span></h1>
+  <div class="header-sub">El País · Colección histórica</div>
+</header>
+
+<div id="info-bar" class="info-bar" style="display:none">
+  <span>📅 <strong id="ib-date">—</strong></span>
+  <span>⬜ <strong id="ib-grid">—</strong></span>
+  <span>💡 <strong id="ib-clues">—</strong> pistas</span>
+</div>
+
+<div class="container">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">📅 Fechas disponibles</div>
+      <input type="search" id="search-input" placeholder="Buscar fecha (ej: 2026-04)…">
+      <div id="date-list">
+        <div class="loading" style="padding:1.5rem">Cargando…</div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">📊 Estadísticas</div>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value" id="stat-total">—</div>
+          <div class="stat-label">Total guardados</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value" id="stat-days">—</div>
+          <div class="stat-label">Días seguidos</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value" id="stat-clues">—</div>
+          <div class="stat-label">Pistas hoy</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value" id="stat-year">—</div>
+          <div class="stat-label">Desde el año</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- PANEL PRINCIPAL -->
+  <main class="main-panel">
+    <div id="main-content">
+      <div class="empty-state">
+        <h2>Selecciona una fecha</h2>
+        <p>Elige un autodefinido del panel de la izquierda para visualizarlo.</p>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<script>
+// ============================================================
+// CONFIGURACIÓN — cambia esto si tu repo tiene otro nombre
+// ============================================================
+// Si usas GitHub Pages con un repo llamado "autodefinido",
+// la URL base de los datos será algo como:
+// https://TU_USUARIO.github.io/autodefinido/data/
+// Por defecto asume que estamos en la raíz del sitio.
+const DATA_BASE = './data';
+// ============================================================
+
+const MONTHS_ES = ['enero','febrero','marzo','abril','mayo','junio',
+                   'julio','agosto','septiembre','octubre','noviembre','diciembre'];
+
+function formatDateEs(isoDate) {
+  const [y, m, d] = isoDate.split('-');
+  return `${parseInt(d)} de ${MONTHS_ES[parseInt(m)-1]} de ${y}`;
+}
+
+function formatDateShort(isoDate) {
+  const [y, m, d] = isoDate.split('-');
+  return `${d}/${m}/${y}`;
+}
+
+// ─── Estado global ───
+let allDates = [];
+let currentPuzzle = null;
+
+// ─── Cargar índice ───
+async function loadIndex() {
+  try {
+    const r = await fetch(`${DATA_BASE}/index.json`);
+    if (!r.ok) throw new Error('No se encontró el índice');
+    const index = await r.json();
+    allDates = index.dates || [];
+    renderDateList(allDates);
+    updateStats(index);
+    // Cargar el más reciente automáticamente
+    if (allDates.length > 0) loadPuzzle(allDates[0]);
+  } catch (e) {
+    document.getElementById('date-list').innerHTML =
+      `<div class="error-msg">⚠️ No hay datos disponibles todavía.<br>
+       El primer autodefinido se guardará esta noche cuando se ejecute el scraper.</div>`;
+    console.error(e);
+  }
+}
+
+// ─── Renderizar lista de fechas ───
+function renderDateList(dates) {
+  const container = document.getElementById('date-list');
+  if (dates.length === 0) {
+    container.innerHTML = '<div style="padding:1rem;font-size:0.82rem;color:var(--muted)">Sin resultados</div>';
+    return;
+  }
+  container.innerHTML = dates.map(d => `
+    <a class="date-item" data-date="${d}" onclick="loadPuzzle('${d}'); return false;" href="#">
+      ${formatDateShort(d)}
+    </a>
+  `).join('');
+}
+
+// ─── Filtro de búsqueda ───
+document.getElementById('search-input').addEventListener('input', function() {
+  const q = this.value.trim().toLowerCase();
+  const filtered = allDates.filter(d => d.includes(q));
+  renderDateList(filtered);
+  // Re-marcar activo
+  if (currentPuzzle) markActive(currentPuzzle.date);
+});
+
+function markActive(date) {
+  document.querySelectorAll('.date-item').forEach(el => {
+    el.classList.toggle('active', el.dataset.date === date);
+  });
+}
+
+// ─── Cargar un puzzle ───
+async function loadPuzzle(date) {
+  const content = document.getElementById('main-content');
+  content.innerHTML = `<div class="loading"><div class="loading-spinner"></div><p>Cargando ${date}…</p></div>`;
+  
+  try {
+    const r = await fetch(`${DATA_BASE}/${date}.json`);
+    if (!r.ok) throw new Error(`No se encontró el puzzle de ${date}`);
+    const puzzle = await r.json();
+    currentPuzzle = puzzle;
+    renderPuzzle(puzzle);
+    markActive(date);
+    document.getElementById('stat-clues').textContent = puzzle.total_clues;
+    // Info bar
+    const ib = document.getElementById('info-bar');
+    ib.style.display = 'flex';
+    document.getElementById('ib-date').textContent = formatDateEs(puzzle.date);
+    document.getElementById('ib-grid').textContent = `${puzzle.grid_cols}×${puzzle.grid_rows}`;
+    document.getElementById('ib-clues').textContent = puzzle.total_clues;
+  } catch (e) {
+    content.innerHTML = `<div class="error-msg">⚠️ Error cargando el puzzle: ${e.message}</div>`;
+    console.error(e);
+  }
+}
+
+// ─── Renderizar puzzle ───
+function renderPuzzle(puzzle) {
+  const content = document.getElementById('main-content');
+  
+  const cluesRight = puzzle.clues.filter(c => c.direction === 'right' || c.direction === 'both');
+  const cluesDown  = puzzle.clues.filter(c => c.direction === 'down'  || c.direction === 'both');
+  const cluesOther = puzzle.clues.filter(c => c.direction === 'unknown');
+
+  content.innerHTML = `
+    <div class="panel-header">
+      <div class="puzzle-date">${formatDateEs(puzzle.date)}</div>
+      <div class="puzzle-meta">${puzzle.grid_cols}×${puzzle.grid_rows} · ${puzzle.total_clues} pistas</div>
+    </div>
+
+    <div id="grid-container">
+      ${buildGridSVG(puzzle)}
+    </div>
+
+    <div class="clues-section">
+      <div class="clues-group">
+        <h3>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Horizontales (${cluesRight.length})
+        </h3>
+        ${cluesRight.map(c => `
+          <div class="clue-item">
+            <span class="clue-pos">${c.col},${c.row}</span>
+            <span>${c.text}</span>
+          </div>`).join('')}
+        ${cluesOther.map(c => `
+          <div class="clue-item" title="Dirección no determinada">
+            <span class="clue-pos" style="color:var(--border-dark)">?</span>
+            <span>${c.text}</span>
+          </div>`).join('')}
+      </div>
+      <div class="clues-group">
+        <h3>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          Verticales (${cluesDown.length})
+        </h3>
+        ${cluesDown.map(c => `
+          <div class="clue-item">
+            <span class="clue-pos">${c.col},${c.row}</span>
+            <span>${c.text}</span>
+          </div>`).join('')}
+      </div>
+    </div>
+  `;
+}
+
+// ─── Construir SVG de la cuadrícula ───
+function buildGridSVG(puzzle) {
+  const CELL = 36; // píxeles por celda en la vista
+  const FONT = 8;
+  const cols = puzzle.grid_cols;
+  const rows = puzzle.grid_rows;
+  const W = cols * CELL;
+  const H = rows * CELL;
+
+  // Crear mapa de pistas por posición
+  const clueMap = {};
+  for (const c of puzzle.clues) {
+    const key = `${c.col},${c.row}`;
+    if (!clueMap[key]) clueMap[key] = [];
+    clueMap[key].push(c);
+  }
+
+  let cells = '';
+  for (let row = 0; row < rows; row++) {
+    for (let col = 0; col < cols; col++) {
+      const x = col * CELL;
+      const y = row * CELL;
+      const cellType = puzzle.grid[row] ? puzzle.grid[row][col] : 0;
+      const key = `${col},${row}`;
+
+      if (cellType === 0) {
+        // Celda negra
+        cells += `<rect x="${x}" y="${y}" width="${CELL}" height="${CELL}" fill="#1a1410"/>`;
+      } else if (cellType === 1) {
+        // Celda jugable
+        cells += `<rect x="${x}" y="${y}" width="${CELL}" height="${CELL}" fill="white" stroke="#c9c3b8" stroke-width="0.5"/>`;
+      } else if (cellType === 2) {
+        // Celda de pista
+        const clues = clueMap[key] || [];
+        const firstText = clues.length > 0 ? clues[0].text : '';
+        const displayText = firstText.length > 12 ? firstText.substring(0, 11) + '…' : firstText;
+        
+        cells += `
+          <rect x="${x}" y="${y}" width="${CELL}" height="${CELL}" fill="#f5f5f5" stroke="#c9c3b8" stroke-width="0.5"/>
+          <text x="${x + CELL/2}" y="${y + CELL/2}" 
+                text-anchor="middle" dominant-baseline="central"
+                font-family="DM Sans, sans-serif" font-size="${FONT}" fill="#5a5248"
+                style="cursor:default">
+            ${escapeXml(displayText)}
+          </text>`;
+        
+        // Flechas de dirección
+        for (const c of clues) {
+          if (c.direction === 'down' || c.direction === 'both') {
+            // Flecha abajo
+            cells += `<polygon points="${x+CELL/2-3},${y+CELL-5} ${x+CELL/2+3},${y+CELL-5} ${x+CELL/2},${y+CELL-1}" fill="#c8371a"/>`;
+          }
+          if (c.direction === 'right' || c.direction === 'both') {
+            // Flecha derecha
+            cells += `<polygon points="${x+CELL-5},${y+CELL/2-3} ${x+CELL-5},${y+CELL/2+3} ${x+CELL-1},${y+CELL/2}" fill="#c8371a"/>`;
+          }
+        }
+      }
+    }
+  }
+
+  return `<svg id="grid-svg" xmlns="http://www.w3.org/2000/svg"
+    width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+    ${cells}
+  </svg>`;
+}
+
+function escapeXml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+// ─── Actualizar estadísticas sidebar ───
+function updateStats(index) {
+  document.getElementById('stat-total').textContent = index.total || 0;
+  if (index.dates && index.dates.length > 0) {
+    const oldest = index.dates[index.dates.length - 1];
+    document.getElementById('stat-year').textContent = oldest.split('-')[0];
+    // Calcular racha
+    let streak = 0;
+    const today = new Date();
+    for (let i = 0; i < index.dates.length; i++) {
+      const d = new Date(index.dates[i]);
+      const diff = Math.round((today - d) / 86400000);
+      if (diff === i) streak++;
+      else break;
+    }
+    document.getElementById('stat-days').textContent = streak;
+  }
+}
+
+// ─── Inicio ───
+loadIndex();
+</script>
+
+</body>
+</html>
