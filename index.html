@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Archivo Autodefinido · El País</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink:       #18140f;
+      --paper:     #f5f0e8;
+      --paper2:    #ede8de;
+      --paper3:    #e2dcd2;
+      --accent:    #b5311a;
+      --accent-bg: #f9ece8;
+      --border:    #c5bfb3;
+      --muted:     #7a7368;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'IBM Plex Sans', sans-serif; background: var(--paper); color: var(--ink); min-height: 100vh; }
+
+    .site-header { background: var(--ink); color: var(--paper); padding: 1rem 2rem; display: flex; align-items: center; gap: 1.2rem; }
+    .site-header h1 { font-family: 'Lora', serif; font-size: 1.4rem; font-weight: 600; }
+    .site-header h1 em { color: #f2a07a; font-style: italic; }
+    .header-sep { width: 1px; height: 22px; background: #3a3530; }
+    .header-sub { font-size: 0.72rem; color: #908880; letter-spacing: 0.04em; }
+
+    .app { display: grid; grid-template-columns: 300px 1fr; min-height: calc(100vh - 54px); }
+    @media (max-width: 750px) { .app { grid-template-columns: 1fr; } }
+
+    .sidebar { border-right: 2px solid var(--ink); background: var(--paper2); display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; }
+    .sidebar-scroll { overflow-y: auto; flex: 1; scrollbar-width: thin; }
+
+    .cal-nav { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--paper2); z-index: 5; }
+    .cal-nav button { background: none; border: 1px solid var(--border); width: 28px; height: 28px; cursor: pointer; font-size: 1rem; color: var(--ink); display: flex; align-items: center; justify-content: center; transition: all 0.12s; }
+    .cal-nav button:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .cal-nav button:disabled { opacity: 0.3; cursor: default; pointer-events: none; }
+    .cal-month { font-family: 'Lora', serif; font-size: 0.95rem; font-weight: 600; text-transform: capitalize; }
+
+    .cal-body { padding: 0.6rem 0.85rem 0.85rem; }
+    .cal-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); margin-bottom: 4px; }
+    .cal-wd { text-align: center; font-size: 0.6rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 4px 0; }
+    .cal-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+    .cal-day { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 0.77rem; border-radius: 2px; color: var(--muted); transition: all 0.1s; cursor: default; position: relative; }
+    .cal-day.has { background: var(--paper3); color: var(--ink); cursor: pointer; font-weight: 500; }
+    .cal-day.has:hover { background: var(--ink); color: var(--paper); }
+    .cal-day.active { background: var(--accent) !important; color: #fff !important; }
+    .cal-day.is-today::after { content: ''; position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%); width: 3px; height: 3px; border-radius: 50%; background: var(--accent); }
+    .cal-day.active.is-today::after { background: #fff; }
+
+    .cal-legend { padding: 0.5rem 0.85rem; display: flex; gap: 1rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.62rem; color: var(--muted); }
+    .legend-dot { width: 10px; height: 10px; border-radius: 1px; }
+
+    .sidebar-stats { padding: 0.85rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; border-top: 1px solid var(--border); }
+    .stat-box { background: var(--paper); border: 1px solid var(--border); padding: 0.5rem 0.6rem; }
+    .stat-num { font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 600; color: var(--accent); line-height: 1; }
+    .stat-lbl { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); margin-top: 2px; }
+
+    .main { padding: 1.8rem 2rem; }
+    .empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; text-align: center; color: var(--muted); gap: 0.8rem; }
+    .empty-icon { font-size: 3rem; opacity: 0.35; }
+    .empty-state h2 { font-family: 'Lora', serif; font-size: 1.3rem; color: var(--ink); }
+    .empty-state p { font-size: 0.84rem; max-width: 300px; line-height: 1.6; }
+
+    .puzzle-header { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 1.4rem; padding-bottom: 1rem; border-bottom: 2px solid var(--ink); }
+    .puzzle-title { font-family: 'Lora', serif; font-size: 1.45rem; font-style: italic; font-weight: 400; }
+    .puzzle-badge { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; background: var(--paper3); border: 1px solid var(--border); padding: 0.22rem 0.55rem; color: var(--muted); }
+
+    #grid-wrap { overflow-x: auto; margin-bottom: 2rem; }
+    #grid-svg { display: block; border: 2px solid var(--ink); }
+
+    .clues-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    @media (max-width: 600px) { .clues-wrap { grid-template-columns: 1fr; } }
+    .clues-col h3 { font-size: 0.67rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding-bottom: 0.45rem; border-bottom: 1px solid var(--border); margin-bottom: 0.65rem; display: flex; align-items: center; gap: 0.4rem; }
+    .clue-row { display: flex; gap: 0.45rem; padding: 0.28rem 0.4rem; margin-bottom: 2px; border-left: 2px solid transparent; transition: all 0.1s; line-height: 1.4; }
+    .clue-row:hover { border-left-color: var(--accent); background: var(--accent-bg); }
+    .clue-coord { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; color: var(--muted); flex-shrink: 0; padding-top: 1px; min-width: 22px; }
+    .clue-text { font-size: 0.82rem; }
+
+    .spinner-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; gap: 1rem; color: var(--muted); font-size: 0.84rem; }
+    .spinner { width: 34px; height: 34px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .no-data { padding: 3rem 2rem; text-align: center; color: var(--muted); font-size: 0.84rem; }
+    .no-data strong { display: block; font-family: 'Lora', serif; font-size: 1.1rem; color: var(--ink); margin-bottom: 0.4rem; }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1>Archivo <em>Autodefinido</em></h1>
+  <div class="header-sep"></div>
+  <div class="header-sub">El País · colección histórica</div>
+</header>
+
+<div class="app">
+  <aside class="sidebar">
+    <div class="sidebar-scroll">
+      <div class="cal-nav">
+        <button id="btn-prev">&#8249;</button>
+        <span class="cal-month" id="cal-month-label">—</span>
+        <button id="btn-next">&#8250;</button>
+      </div>
+      <div class="cal-body">
+        <div class="cal-weekdays">
+          <div class="cal-wd">Lu</div><div class="cal-wd">Ma</div><div class="cal-wd">Mi</div>
+          <div class="cal-wd">Ju</div><div class="cal-wd">Vi</div><div class="cal-wd">Sa</div><div class="cal-wd">Do</div>
+        </div>
+        <div class="cal-days" id="cal-days"></div>
+      </div>
+      <div class="cal-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:var(--paper3);border:1px solid var(--border)"></div>Con puzzle</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--accent)"></div>Seleccionado</div>
+        <div class="legend-item" style="gap:4px"><span style="font-size:0.65rem;color:var(--accent)">●</span>Hoy</div>
+      </div>
+    </div>
+    <div class="sidebar-stats">
+      <div class="stat-box"><div class="stat-num" id="st-total">—</div><div class="stat-lbl">Guardados</div></div>
+      <div class="stat-box"><div class="stat-num" id="st-streak">—</div><div class="stat-lbl">Días seguidos</div></div>
+      <div class="stat-box"><div class="stat-num" id="st-clues">—</div><div class="stat-lbl">Pistas hoy</div></div>
+      <div class="stat-box"><div class="stat-num" id="st-from">—</div><div class="stat-lbl">Desde</div></div>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="empty-state">
+      <div class="empty-icon">📰</div>
+      <h2>Selecciona un día</h2>
+      <p>Los días marcados en el calendario tienen autodefinido guardado. Haz clic en uno para verlo.</p>
+    </div>
+  </main>
+</div>
+
+<script>
+const DATA_BASE = './data';
+const MONTHS_ES   = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const MONTHS_LONG = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+
+let availableDates = new Set();
+let calYear, calMonth, currentDate = null;
+
+async function init() {
+  const now = new Date();
+  calYear = now.getFullYear(); calMonth = now.getMonth();
+  try {
+    const r = await fetch(DATA_BASE + '/index.json');
+    if (!r.ok) throw new Error();
+    const idx = await r.json();
+    availableDates = new Set(idx.dates || []);
+    updateStats(idx);
+    if (idx.dates && idx.dates.length > 0) {
+      const [y, m] = idx.dates[0].split('-').map(Number);
+      calYear = y; calMonth = m - 1;
+      renderCalendar();
+      loadPuzzle(idx.dates[0]);
+    } else { renderCalendar(); }
+  } catch {
+    renderCalendar();
+    document.getElementById('main').innerHTML = '<div class="no-data"><strong>Sin datos todavía</strong>Ejecuta el workflow desde GitHub Actions para empezar.</div>';
+  }
+}
+
+function toIso(y, m, d) {
+  return y + '-' + String(m+1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
+}
+
+function renderCalendar() {
+  document.getElementById('cal-month-label').textContent = MONTHS_ES[calMonth] + ' ' + calYear;
+  const dates = [...availableDates].sort();
+  let minY = calYear, minM = calMonth, maxY = calYear, maxM = calMonth;
+  if (dates.length > 0) {
+    const p = dates[0].split('-').map(Number); minY = p[0]; minM = p[1]-1;
+    const q = dates[dates.length-1].split('-').map(Number); maxY = q[0]; maxM = q[1]-1;
+  }
+  document.getElementById('btn-prev').disabled = calYear < minY || (calYear === minY && calMonth <= minM);
+  document.getElementById('btn-next').disabled = calYear > maxY || (calYear === maxY && calMonth >= maxM);
+
+  const firstDay = new Date(calYear, calMonth, 1).getDay();
+  const offset = firstDay === 0 ? 6 : firstDay - 1;
+  const days = new Date(calYear, calMonth + 1, 0).getDate();
+  const today = new Date();
+  const todayStr = toIso(today.getFullYear(), today.getMonth(), today.getDate());
+
+  const c = document.getElementById('cal-days');
+  c.innerHTML = '';
+  for (let i = 0; i < offset; i++) { const e = document.createElement('div'); e.className = 'cal-day'; c.appendChild(e); }
+  for (let d = 1; d <= days; d++) {
+    const iso = toIso(calYear, calMonth, d);
+    const e = document.createElement('div');
+    e.className = 'cal-day';
+    e.textContent = d;
+    if (availableDates.has(iso)) { e.classList.add('has'); e.onclick = () => loadPuzzle(iso); }
+    if (iso === todayStr) e.classList.add('is-today');
+    if (iso === currentDate) e.classList.add('active');
+    c.appendChild(e);
+  }
+}
+
+document.getElementById('btn-prev').onclick = () => { calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; } renderCalendar(); };
+document.getElementById('btn-next').onclick = () => { calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; } renderCalendar(); };
+
+async function loadPuzzle(iso) {
+  currentDate = iso; renderCalendar();
+  document.getElementById('main').innerHTML = '<div class="spinner-wrap"><div class="spinner"></div><span>Cargando ' + iso + '…</span></div>';
+  try {
+    const r = await fetch(DATA_BASE + '/' + iso + '.json');
+    if (!r.ok) throw new Error('No encontrado');
+    const p = await r.json();
+    renderPuzzle(p);
+    document.getElementById('st-clues').textContent = p.total_clues;
+  } catch(e) {
+    document.getElementById('main').innerHTML = '<div class="no-data"><strong>Error</strong>' + e.message + '</div>';
+  }
+}
+
+function renderPuzzle(p) {
+  const parts = p.date.split('-');
+  const titleDate = parseInt(parts[2]) + ' de ' + MONTHS_LONG[parseInt(parts[1])-1] + ' de ' + parts[0];
+  const right = p.clues.filter(c => ['right','both'].includes(c.direction));
+  const down  = p.clues.filter(c => ['down','both'].includes(c.direction));
+  const unk   = p.clues.filter(c => c.direction === 'unknown');
+  document.getElementById('main').innerHTML =
+    '<div class="puzzle-header"><div class="puzzle-title">' + titleDate + '</div>' +
+    '<div class="puzzle-badge">' + p.grid_cols + 'x' + p.grid_rows + ' · ' + p.total_clues + ' pistas</div></div>' +
+    '<div id="grid-wrap">' + buildSVG(p) + '</div>' +
+    '<div class="clues-wrap">' +
+    '<div class="clues-col"><h3><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Horizontales (' + (right.length+unk.length) + ')</h3>' +
+    [...right,...unk].map(c => '<div class="clue-row"><span class="clue-coord">' + c.col + ',' + c.row + '</span><span class="clue-text">' + esc(c.text) + '</span></div>').join('') + '</div>' +
+    '<div class="clues-col"><h3><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>Verticales (' + down.length + ')</h3>' +
+    down.map(c => '<div class="clue-row"><span class="clue-coord">' + c.col + ',' + c.row + '</span><span class="clue-text">' + esc(c.text) + '</span></div>').join('') + '</div></div>';
+}
+
+function buildSVG(p) {
+  const C = 34, W = p.grid_cols * C, H = p.grid_rows * C;
+  const cmap = {};
+  for (const c of p.clues) { const k = c.col+','+c.row; if(!cmap[k]) cmap[k]=[]; cmap[k].push(c); }
+  let s = '';
+  for (let row = 0; row < p.grid_rows; row++) {
+    for (let col = 0; col < p.grid_cols; col++) {
+      const x = col*C, y = row*C, type = (p.grid[row]||[])[col]||0, k = col+','+row;
+      if (type === 0) {
+        s += '<rect x="'+x+'" y="'+y+'" width="'+C+'" height="'+C+'" fill="#18140f"/>';
+      } else if (type === 1) {
+        s += '<rect x="'+x+'" y="'+y+'" width="'+C+'" height="'+C+'" fill="white" stroke="#c5bfb3" stroke-width="0.5"/>';
+      } else {
+        const cs = cmap[k]||[], raw = cs.length > 0 ? cs[0].text : '';
+        const txt = raw.length > 11 ? raw.slice(0,10)+'…' : raw;
+        s += '<rect x="'+x+'" y="'+y+'" width="'+C+'" height="'+C+'" fill="#ededeb" stroke="#c5bfb3" stroke-width="0.5"/>';
+        if (txt) s += '<text x="'+(x+C/2)+'" y="'+(y+C/2)+'" text-anchor="middle" dominant-baseline="central" font-family="IBM Plex Sans,sans-serif" font-size="7" fill="#6a6460">'+escXml(txt)+'</text>';
+        for (const c of cs) {
+          if (c.direction==='down'||c.direction==='both') { const ax=x+C/2,ay=y+C-5; s+='<polygon points="'+(ax-3)+','+ay+' '+(ax+3)+','+ay+' '+ax+','+(ay+4)+'" fill="#b5311a"/>'; }
+          if (c.direction==='right'||c.direction==='both') { const ax=x+C-5,ay=y+C/2; s+='<polygon points="'+ax+','+(ay-3)+' '+ax+','+(ay+3)+' '+(ax+4)+','+ay+'" fill="#b5311a"/>'; }
+        }
+      }
+    }
+  }
+  return '<svg id="grid-svg" xmlns="http://www.w3.org/2000/svg" width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'">'+s+'</svg>';
+}
+
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function escXml(s) { return esc(s).replace(/"/g,'&quot;'); }
+
+function updateStats(idx) {
+  document.getElementById('st-total').textContent = idx.total || 0;
+  const dates = (idx.dates||[]).slice().sort().reverse();
+  if (dates.length > 0) {
+    document.getElementById('st-from').textContent = dates[dates.length-1].slice(0,7);
+    let streak = 0;
+    const todayMs = Date.now();
+    for (let i = 0; i < dates.length; i++) {
+      const diff = Math.round((todayMs - new Date(dates[i]).getTime()) / 86400000);
+      if (diff === i || diff === i+1) streak++;
+      else break;
+    }
+    document.getElementById('st-streak').textContent = streak;
+  }
+}
+
+init();
+</script>
+</body>
+</html>
