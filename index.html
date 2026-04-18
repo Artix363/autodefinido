@@ -14,18 +14,48 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'IBM Plex Sans',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh;}
 
-/* HEADER */
+/* ── PAYWALL ─────────────────────────────────────────────────────── */
+#paywall{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+}
+.pw-box{
+  background:var(--paper);border:3px solid var(--ink);
+  padding:2.5rem 2rem;max-width:360px;width:90%;text-align:center;
+}
+.pw-logo{font-family:'Lora',serif;font-size:1.6rem;font-weight:500;margin-bottom:.3rem;}
+.pw-logo em{color:var(--accent);font-style:italic;}
+.pw-sub{font-size:.75rem;color:var(--muted);letter-spacing:.06em;margin-bottom:1.8rem;}
+.pw-label{font-size:.68rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:left;margin-bottom:.4rem;display:block;}
+.pw-input{
+  width:100%;padding:.6rem .8rem;font-size:1.1rem;
+  font-family:'IBM Plex Mono',monospace;letter-spacing:.15em;
+  border:1.5px solid var(--border);background:var(--paper);color:var(--ink);
+  text-align:center;margin-bottom:.9rem;
+}
+.pw-input:focus{outline:none;border-color:var(--ink);}
+.pw-btn{
+  width:100%;padding:.7rem;background:var(--ink);color:var(--paper);
+  border:none;font-size:.75rem;font-weight:500;letter-spacing:.1em;
+  text-transform:uppercase;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;
+}
+.pw-btn:hover{background:var(--accent);}
+.pw-err{color:var(--accent);font-size:.75rem;margin-top:.5rem;min-height:1.2em;}
+.pw-hint{font-size:.65rem;color:var(--muted);margin-top:1rem;opacity:.6;}
+
+/* ── HEADER ─────────────────────────────────────────────────────── */
 .hdr{background:var(--ink);color:var(--paper);padding:.9rem 1.5rem;display:flex;align-items:center;gap:1rem;}
 .hdr h1{font-family:'Lora',serif;font-size:1.3rem;font-weight:500;}
 .hdr h1 em{color:#f2a07a;font-style:italic;}
 .hdr-sep{width:1px;height:20px;background:#3a3530;}
 .hdr-sub{font-size:.7rem;color:#908880;letter-spacing:.04em;}
 
-/* LAYOUT */
+/* ── LAYOUT ─────────────────────────────────────────────────────── */
 .app{display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 50px);}
 @media(max-width:700px){.app{grid-template-columns:1fr;}}
 
-/* SIDEBAR */
+/* ── SIDEBAR ─────────────────────────────────────────────────────── */
 .sidebar{border-right:2px solid var(--ink);background:var(--paper2);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;}
 .sidebar-scroll{overflow-y:auto;flex:1;scrollbar-width:thin;}
 .cal-nav{display:flex;align-items:center;justify-content:space-between;padding:.7rem .9rem;border-bottom:1px solid var(--border);background:var(--paper2);position:sticky;top:0;z-index:5;}
@@ -48,13 +78,13 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--paper);color:var(--
 .stat-num{font-family:'Lora',serif;font-size:1.4rem;font-weight:600;color:var(--accent);line-height:1;}
 .stat-lbl{font-size:.58rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-top:2px;}
 
-/* MAIN */
+/* ── MAIN ─────────────────────────────────────────────────────── */
 .main{padding:1.2rem 1.5rem;overflow:hidden;}
 .empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;text-align:center;color:var(--muted);gap:.7rem;}
 .empty-state h2{font-family:'Lora',serif;font-size:1.2rem;color:var(--ink);}
 .empty-state p{font-size:.82rem;max-width:280px;line-height:1.6;}
 
-/* GAME HEADER */
+/* ── GAME HEADER ─────────────────────────────────────────────── */
 .game-hdr{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.6rem;margin-bottom:1rem;padding-bottom:.8rem;border-bottom:2px solid var(--ink);}
 .game-title{font-family:'Lora',serif;font-size:1.3rem;font-style:italic;font-weight:400;}
 .game-controls{display:flex;gap:.4rem;align-items:center;}
@@ -62,60 +92,97 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--paper);color:var(--
 .btn-ctrl:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);}
 .btn-ctrl.primary{background:var(--ink);color:var(--paper);border-color:var(--ink);}
 .btn-ctrl.primary:hover{background:var(--accent);border-color:var(--accent);}
-
-/* TIMER */
 .timer{font-family:'IBM Plex Mono',monospace;font-size:.85rem;background:var(--paper3);border:1px solid var(--border);padding:.3rem .6rem;letter-spacing:.05em;}
 
-/* BOARD */
+/* ── BOARD ─────────────────────────────────────────────────────── */
 #board-wrap{overflow-x:auto;margin-bottom:1.2rem;}
 #board{display:inline-grid;border:2px solid var(--ink);background:var(--ink);gap:1px;user-select:none;}
 
-/* CELLS */
-.cell{width:var(--cell);height:var(--cell);position:relative;display:flex;align-items:center;justify-content:center;}
+/* ── CELLS ─────────────────────────────────────────────────────── */
+.cell{width:var(--cell);height:var(--cell);position:relative;flex-shrink:0;}
 .cell-black{background:var(--black-bg);}
+
+/* Celda jugable */
 .cell-play{background:var(--cell-bg);cursor:text;}
-.cell-play.selected{background:var(--blue);}
-.cell-play.word-selected{background:#e8f7ff;}
-.cell-play.correct{background:#c8f0c8;}
-.cell-play.wrong{background:#fdd;}
+.cell-play.selected{background:var(--blue)!important;}
+.cell-play.word-hl{background:#e4f4fd;}
+.cell-play.correct{background:#c8f0c8!important;}
+.cell-play.wrong{background:#fdd!important;}
 .cell-play input{
   position:absolute;inset:0;width:100%;height:100%;
   border:none;outline:none;background:transparent;
-  text-align:center;font-size:1.4rem;font-weight:600;text-transform:uppercase;
+  text-align:center;font-size:1.5rem;font-weight:600;text-transform:uppercase;
   font-family:'IBM Plex Mono',monospace;color:var(--ink);cursor:pointer;
-  caret-color:transparent;
+  caret-color:transparent;padding:0;
 }
-.cell-play.selected input{background:transparent;}
 
-/* CLUE CELLS */
-.cell-clue{background:var(--clue-bg);font-size:.56rem;font-weight:500;text-transform:uppercase;line-height:1.2;color:#444;padding:3px 4px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;cursor:default;}
-.cell-clue .clue-top{flex:1;display:flex;align-items:center;width:100%;}
-.cell-clue .clue-bot{flex:1;display:flex;align-items:flex-end;width:100%;border-top:1px solid #c0bab4;padding-top:2px;margin-top:2px;}
-.cell-clue span{display:block;line-height:1.15;}
-.cell-clue .arrow{flex-shrink:0;margin-left:2px;font-size:.65rem;}
+/* ── CLUE CELLS ─────────────────────────────────────────────────── */
+.cell-clue{
+  background:var(--clue-bg);
+  font-size:.52rem;font-weight:500;text-transform:uppercase;
+  line-height:1.2;color:#3a3a3a;
+  display:grid;overflow:hidden;
+}
+/* Celda con UNA pista */
+.cell-clue.single{grid-template-rows:1fr;}
+.cell-clue.single .clue-half{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:3px 4px;gap:2px;
+}
+/* Celda con DOS pistas */
+.cell-clue.double{grid-template-rows:1fr 1fr;}
+.cell-clue.double .clue-half{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:2px 4px;gap:2px;overflow:hidden;
+}
+.cell-clue.double .clue-half:first-child{border-bottom:1px solid #c0bab4;}
+.clue-text{flex:1;min-width:0;word-break:break-word;line-height:1.15;}
 
-/* STATUS BAR */
+/* ── FLECHA SVG ─────────────────────────────────────────────────── */
+/*
+  Flechas como en El País: L-shape que indica de dónde viene la pista
+  y hacia dónde va la respuesta.
+  Combinaciones: right (→), bottom (↓), right+bottom (↘-bend), bottom+right (↙-bend)
+*/
+.arrow-icon{flex-shrink:0;width:14px;height:14px;}
+.arrow-icon svg{width:100%;height:100%;}
+
+/* ── STATUS BAR ──────────────────────────────────────────────── */
 .status-bar{background:var(--paper3);border:1px solid var(--border);padding:.5rem .8rem;font-size:.8rem;margin-bottom:1rem;display:none;}
 .status-bar.show{display:block;}
 .status-ok{color:#2d7a2d;font-weight:500;}
 .status-err{color:var(--accent);}
 
-/* SPINNER */
+/* ── SPINNER ──────────────────────────────────────────────────── */
 .spinner-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:.8rem;color:var(--muted);}
 .spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
 
-/* MODAL WIN */
-.modal-overlay{position:fixed;inset:0;background:#0007;z-index:100;display:none;align-items:center;justify-content:center;}
+/* ── WIN MODAL ──────────────────────────────────────────────── */
+.modal-overlay{position:fixed;inset:0;background:#0007;z-index:200;display:none;align-items:center;justify-content:center;}
 .modal-overlay.show{display:flex;}
-.modal{background:var(--paper);border:2px solid var(--ink);padding:2rem;max-width:400px;width:90%;text-align:center;}
+.modal{background:var(--paper);border:2px solid var(--ink);padding:2rem;max-width:380px;width:90%;text-align:center;}
 .modal h2{font-family:'Lora',serif;font-size:1.5rem;margin-bottom:.5rem;}
-.modal p{color:var(--muted);font-size:.85rem;margin-bottom:1.2rem;}
-.modal .time-display{font-family:'IBM Plex Mono',monospace;font-size:2rem;color:var(--accent);margin:.5rem 0;}
+.modal p{color:var(--muted);font-size:.85rem;margin-bottom:1rem;}
+.modal .time-display{font-family:'IBM Plex Mono',monospace;font-size:2rem;color:var(--accent);margin:.4rem 0;}
 </style>
 </head>
 <body>
 
+<!-- ══ PAYWALL ══════════════════════════════════════════════════════ -->
+<div id="paywall">
+  <div class="pw-box">
+    <div class="pw-logo">Archivo <em>Autodefinido</em></div>
+    <div class="pw-sub">El País · colección histórica</div>
+    <label class="pw-label" for="pw-input">Contraseña de acceso</label>
+    <input class="pw-input" id="pw-input" type="password" placeholder="••••••" maxlength="20" autocomplete="off">
+    <button class="pw-btn" id="pw-btn" onclick="checkPassword()">Entrar</button>
+    <div class="pw-err" id="pw-err"></div>
+    <div class="pw-hint">Acceso privado · Repositorio público</div>
+  </div>
+</div>
+
+<!-- ══ HEADER ════════════════════════════════════════════════════════ -->
 <header class="hdr">
   <h1>Archivo <em>Autodefinido</em></h1>
   <div class="hdr-sep"></div>
@@ -163,73 +230,107 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--paper);color:var(--
     <h2>¡Completado! 🎉</h2>
     <p>Has resuelto el autodefinido del día</p>
     <div class="time-display" id="modal-time">00:00</div>
-    <p style="font-size:.75rem;color:var(--muted)">Tiempo empleado</p>
-    <br>
+    <p style="font-size:.75rem;color:var(--muted);margin-bottom:1.2rem;">Tiempo empleado</p>
     <button class="btn-ctrl primary" onclick="document.getElementById('modal-win').classList.remove('show')">Cerrar</button>
   </div>
 </div>
 
 <script>
+// ════════════════════════════════════════════════════════════════════
+// PAYWALL — contraseña: 040524 (hash comparado para seguridad)
+// ════════════════════════════════════════════════════════════════════
+const PW_HASH = '54dc030b'; // hash simple de "040524"
+function simpleHash(s){let h=0;for(let i=0;i<s.length;i++)h=(Math.imul(31,h)+s.charCodeAt(i))|0;return(h>>>0).toString(16);}
+
+function checkPassword(){
+  const val = document.getElementById('pw-input').value.trim();
+  const err = document.getElementById('pw-err');
+  if(!val){err.textContent='Introduce la contraseña.';return;}
+  if(simpleHash(val)===PW_HASH){
+    sessionStorage.setItem('autodefinido_auth','1');
+    document.getElementById('paywall').style.display='none';
+  } else {
+    err.textContent='Contraseña incorrecta.';
+    document.getElementById('pw-input').value='';
+    document.getElementById('pw-input').focus();
+  }
+}
+document.getElementById('pw-input').addEventListener('keydown',e=>{if(e.key==='Enter')checkPassword();});
+
+// Comprobar si ya está autenticado en esta sesión
+if(sessionStorage.getItem('autodefinido_auth')==='1'){
+  document.getElementById('paywall').style.display='none';
+}
+
+// ════════════════════════════════════════════════════════════════════
+// CONSTANTES Y ESTADO
+// ════════════════════════════════════════════════════════════════════
 const DATA = './data';
-const MONTHS_ES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const MONTHS_ES   = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 const MONTHS_LONG = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
-const CELL_SIZE = 68; // px, debe coincidir con --cell en CSS
+const CELL_PX = 68;
 
 let availableDates = new Set();
 let calYear, calMonth, currentDate = null;
-let puzzle = null; // datos del puzzle actual
-let timerInterval = null, timerSeconds = 0;
+let puzzle = null;
+let timerInterval = null, timerSec = 0;
 let gameFinished = false;
-// wordId -> lista de celdas {col,row,input}
-let wordMap = {};
-// Celda actualmente seleccionada
-let selCol = -1, selRow = -1, selWordId = null, selDir = null;
 
-// ──────────────────────────────────────────────────────────────────────
+// Estructura del juego
+// wordMap[wordId] = { cells:[{col,row,el,inp}], dir:'right'|'bottom' }
+let wordMap = {};
+// cellToWords[col+','+row] = [{wordId, dir}]  — qué palabras pasan por cada celda
+let cellToWords = {};
+
+// Selección actual
+let selCol = -1, selRow = -1;
+let selWordId = null, selDir = null;
+
+// ════════════════════════════════════════════════════════════════════
 // INIT
-// ──────────────────────────────────────────────────────────────────────
-async function init() {
+// ════════════════════════════════════════════════════════════════════
+async function init(){
   const now = new Date();
   calYear = now.getFullYear(); calMonth = now.getMonth();
-  try {
-    const r = await fetch(DATA + '/index.json');
-    if (!r.ok) throw new Error();
+  try{
+    const r = await fetch(DATA+'/index.json');
+    if(!r.ok) throw new Error();
     const idx = await r.json();
-    availableDates = new Set(idx.dates || []);
+    availableDates = new Set(idx.dates||[]);
     updateStats(idx);
-    if (idx.dates && idx.dates.length > 0) {
+    if(idx.dates&&idx.dates.length>0){
       const [y,m] = idx.dates[0].split('-').map(Number);
-      calYear = y; calMonth = m - 1;
+      calYear=y; calMonth=m-1;
       renderCalendar();
       loadPuzzle(idx.dates[0]);
     } else { renderCalendar(); }
   } catch {
     renderCalendar();
-    document.getElementById('main').innerHTML = `<div class="empty-state"><div style="font-size:2rem;opacity:.3">📭</div><h2>Sin datos todavía</h2><p>Ejecuta el workflow de GitHub Actions para empezar a guardar puzzles.</p></div>`;
+    document.getElementById('main').innerHTML=`<div class="empty-state"><div style="font-size:2rem;opacity:.3">📭</div><h2>Sin datos todavía</h2><p>Ejecuta el workflow de GitHub Actions para empezar a guardar puzzles.</p></div>`;
   }
 }
 
-// ──────────────────────────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════
 // CALENDARIO
-// ──────────────────────────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════
 function toIso(y,m,d){return y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');}
 
-function renderCalendar() {
-  document.getElementById('cal-month-label').textContent = MONTHS_ES[calMonth]+' '+calYear;
-  const dates = [...availableDates].sort();
+function renderCalendar(){
+  document.getElementById('cal-month-label').textContent=MONTHS_ES[calMonth]+' '+calYear;
+  const dates=[...availableDates].sort();
   let minY=calYear,minM=calMonth,maxY=calYear,maxM=calMonth;
   if(dates.length>0){
     const p=dates[0].split('-').map(Number); minY=p[0];minM=p[1]-1;
     const q=dates[dates.length-1].split('-').map(Number); maxY=q[0];maxM=q[1]-1;
   }
-  document.getElementById('btn-prev').disabled = calYear<minY||(calYear===minY&&calMonth<=minM);
-  document.getElementById('btn-next').disabled = calYear>maxY||(calYear===maxY&&calMonth>=maxM);
-  const firstDay = new Date(calYear,calMonth,1).getDay();
-  const offset = firstDay===0?6:firstDay-1;
-  const days = new Date(calYear,calMonth+1,0).getDate();
-  const today = new Date();
-  const todayStr = toIso(today.getFullYear(),today.getMonth(),today.getDate());
-  const c = document.getElementById('cal-days');
+  document.getElementById('btn-prev').disabled=calYear<minY||(calYear===minY&&calMonth<=minM);
+  document.getElementById('btn-next').disabled=calYear>maxY||(calYear===maxY&&calMonth>=maxM);
+  const firstDay=new Date(calYear,calMonth,1).getDay();
+  const offset=firstDay===0?6:firstDay-1;
+  const days=new Date(calYear,calMonth+1,0).getDate();
+  const today=new Date();
+  const todayStr=toIso(today.getFullYear(),today.getMonth(),today.getDate());
+  const c=document.getElementById('cal-days');
   c.innerHTML='';
   for(let i=0;i<offset;i++){const e=document.createElement('div');e.className='cal-day';c.appendChild(e);}
   for(let d=1;d<=days;d++){
@@ -244,57 +345,65 @@ function renderCalendar() {
 document.getElementById('btn-prev').onclick=()=>{calMonth--;if(calMonth<0){calMonth=11;calYear--;}renderCalendar();};
 document.getElementById('btn-next').onclick=()=>{calMonth++;if(calMonth>11){calMonth=0;calYear++;}renderCalendar();};
 
-// ──────────────────────────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════
 // CARGAR PUZZLE
-// ──────────────────────────────────────────────────────────────────────
-async function loadPuzzle(iso) {
+// ════════════════════════════════════════════════════════════════════
+async function loadPuzzle(iso){
   stopTimer();
   currentDate=iso; renderCalendar();
   document.getElementById('main').innerHTML=`<div class="spinner-wrap"><div class="spinner"></div><span>Cargando ${iso}…</span></div>`;
-  try {
-    const r = await fetch(DATA+'/'+iso+'.json');
+  try{
+    const r=await fetch(DATA+'/'+iso+'.json');
     if(!r.ok) throw new Error('No encontrado');
-    puzzle = await r.json();
-    document.getElementById('st-clues').textContent = puzzle.total_clues;
+    puzzle=await r.json();
+    document.getElementById('st-clues').textContent=puzzle.total_clues;
     renderGame();
-  } catch(e) {
+  } catch(e){
     document.getElementById('main').innerHTML=`<div class="empty-state"><h2>Error</h2><p>${e.message}</p></div>`;
   }
 }
 
-// ──────────────────────────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════
 // RENDER JUEGO
-// ──────────────────────────────────────────────────────────────────────
-function renderGame() {
+// ════════════════════════════════════════════════════════════════════
+function renderGame(){
   gameFinished=false;
-  wordMap={};
-  selCol=-1;selRow=-1;selWordId=null;selDir=null;
+  wordMap={}; cellToWords={};
+  selCol=-1; selRow=-1; selWordId=null; selDir=null;
 
-  const board = puzzle.board; // array de celdas
-  const words = puzzle.words; // {vertical:[...], horizontal:[...]}
-  const cols = puzzle.grid_cols;
-  const rows = puzzle.grid_rows;
-  const [y,m,d] = puzzle.date.split('-');
-  const dateStr = parseInt(d)+' de '+MONTHS_LONG[parseInt(m)-1]+' de '+y;
-
-  // Construir mapa col,row -> celda del board
-  const cellMap = {};
-  for(const cell of board) cellMap[cell.col+','+cell.row] = cell;
-
-  // Construir mapa wordId -> {cells, direction}
-  // Horizontal words
-  for(const w of (words.horizontal||[])) {
-    wordMap[w.wordId] = {cells:[], dir:'right', solution:w.solution};
-  }
-  // Vertical words
-  for(const w of (words.vertical||[])) {
-    wordMap[w.wordId] = {cells:[], dir:'bottom', solution:w.solution};
-  }
-
+  const board  = puzzle.board;
+  const words  = puzzle.words;
+  const cols   = puzzle.grid_cols;
+  const rows   = puzzle.grid_rows;
   const [py,pm,pd] = puzzle.date.split('-');
 
-  // HTML del juego
-  document.getElementById('main').innerHTML = `
+  // ── Construir cellMap ────────────────────────────────────────────
+  const cellMap={};
+  for(const cell of board) cellMap[cell.col+','+cell.row]=cell;
+
+  // ── Construir wordMap y cellToWords ──────────────────────────────
+  // Palabras horizontales
+  for(const w of (words.horizontal||[])){
+    wordMap[w.wordId]={cells:[],dir:'right'};
+  }
+  // Palabras verticales
+  for(const w of (words.vertical||[])){
+    wordMap[w.wordId]={cells:[],dir:'bottom'};
+  }
+
+  // Mapear celdas jugables a sus palabras usando las celdas del board
+  for(const cell of board){
+    if(cell.type!=='cell') continue;
+    const k=cell.col+','+cell.row;
+    cellToWords[k]=[];
+    for(const wid of (cell.wordIds||[])){
+      const w=wordMap[wid];
+      if(w) cellToWords[k].push({wordId:wid,dir:w.dir});
+    }
+  }
+
+  // ── HTML contenedor ──────────────────────────────────────────────
+  document.getElementById('main').innerHTML=`
     <div class="game-hdr">
       <div class="game-title">${parseInt(pd)} de ${MONTHS_LONG[parseInt(pm)-1]} de ${py}</div>
       <div class="game-controls">
@@ -305,53 +414,58 @@ function renderGame() {
       </div>
     </div>
     <div class="status-bar" id="status-bar"></div>
-    <div id="board-wrap"><div id="board"></div></div>
-  `;
+    <div id="board-wrap"><div id="board"></div></div>`;
 
-  const boardEl = document.getElementById('board');
-  boardEl.style.gridTemplateColumns = `repeat(${cols}, ${CELL_SIZE}px)`;
-  boardEl.style.gridTemplateRows = `repeat(${rows}, ${CELL_SIZE}px)`;
+  const boardEl=document.getElementById('board');
+  boardEl.style.gridTemplateColumns=`repeat(${cols},${CELL_PX}px)`;
+  boardEl.style.gridTemplateRows=`repeat(${rows},${CELL_PX}px)`;
 
-  // Crear celdas
+  // ── Crear celdas ─────────────────────────────────────────────────
   for(let row=0;row<rows;row++){
     for(let col=0;col<cols;col++){
-      const key = col+','+row;
-      const cell = cellMap[key];
-      const el = document.createElement('div');
+      const key=col+','+row;
+      const cell=cellMap[key];
+      const el=document.createElement('div');
       el.dataset.col=col; el.dataset.row=row;
 
-      if(!cell) {
-        // celda negra
+      if(!cell){
         el.className='cell cell-black';
-      } else if(cell.type==='cell') {
-        // celda jugable
+      } else if(cell.type==='cell'){
         el.className='cell cell-play';
         el.dataset.solution=cell.solution;
-        const inp = document.createElement('input');
-        inp.type='text'; inp.maxLength=1; inp.autocomplete='off';
-        inp.dataset.col=col; inp.dataset.row=row;
+        const inp=document.createElement('input');
+        inp.type='text'; inp.maxLength=2; inp.autocomplete='off';
+        inp.spellcheck=false; inp.dataset.col=col; inp.dataset.row=row;
         el.appendChild(inp);
-        inp.addEventListener('click', ()=>onCellClick(col,row,inp));
-        inp.addEventListener('keydown', e=>onKeyDown(e,col,row,inp));
-        inp.addEventListener('input', e=>onInput(e,col,row,inp));
+        // Eventos
+        el.addEventListener('mousedown',()=>onCellMousedown(col,row,inp,el));
+        inp.addEventListener('keydown',e=>onKeyDown(e,col,row,inp));
+        inp.addEventListener('input',e=>onInput(e,col,row,inp));
+        inp.addEventListener('compositionend',e=>onInput(e,col,row,inp));
         // Registrar en wordMap
-        for(const wid of (cell.wordIds||[])) {
+        for(const wid of (cell.wordIds||[])){
           if(wordMap[wid]) wordMap[wid].cells.push({col,row,el,inp});
         }
-      } else if(cell.type==='clue'||cell.type==='clues') {
-        // celda de pista
+      } else if(cell.type==='clue'||cell.type==='clues'){
         el.className='cell cell-clue';
         if(cell.type==='clue'){
-          const arrow = arrowChar(cell.orientation?.to);
-          el.innerHTML=`<div class="clue-top"><span>${fmtClue(cell.value)}</span><span class="arrow">${arrow}</span></div>`;
+          el.classList.add('single');
+          const half=document.createElement('div');
+          half.className='clue-half';
+          half.appendChild(makeClueText(cell.value||''));
+          half.appendChild(makeArrow(cell.orientation?.from, cell.orientation?.to));
+          el.appendChild(half);
         } else {
-          // doble pista
-          const v = cell.values||[];
-          const o = cell.orientations||[];
-          const a0 = arrowChar(o[0]?.to); const a1 = arrowChar(o[1]?.to);
-          el.innerHTML=`
-            <div class="clue-top"><span>${fmtClue(v[0]||'')}</span><span class="arrow">${a0}</span></div>
-            <div class="clue-bot"><span>${fmtClue(v[1]||'')}</span><span class="arrow">${a1}</span></div>`;
+          el.classList.add('double');
+          const vals=cell.values||[];
+          const orients=cell.orientations||[];
+          for(let i=0;i<2;i++){
+            const half=document.createElement('div');
+            half.className='clue-half';
+            half.appendChild(makeClueText(vals[i]||''));
+            half.appendChild(makeArrow(orients[i]?.from, orients[i]?.to));
+            el.appendChild(half);
+          }
         }
       } else {
         el.className='cell cell-black';
@@ -360,168 +474,239 @@ function renderGame() {
     }
   }
 
-  // Iniciar timer
   startTimer();
 }
 
-function fmtClue(s){
-  return (s||'').replace(/\\n/g,'<br>').replace(/\n/g,'<br>');
-}
-function arrowChar(dir){
-  if(dir==='right') return '→';
-  if(dir==='bottom'||dir==='down') return '↓';
-  if(dir==='left') return '←';
-  if(dir==='top'||dir==='up') return '↑';
-  return '';
+// ════════════════════════════════════════════════════════════════════
+// FLECHAS — SVG que imitan las de El País (codo + punta)
+// from = dirección de donde viene la pista
+// to   = dirección hacia donde va la respuesta
+// ════════════════════════════════════════════════════════════════════
+function makeArrow(from, to){
+  const wrap=document.createElement('div');
+  wrap.className='arrow-icon';
+  // Si no hay info, flecha simple
+  if(!from&&!to){wrap.innerHTML='';return wrap;}
+  // Normalizar
+  from=(from||'right').toLowerCase();
+  to=(to||'right').toLowerCase();
+  // SVG 14x14, trazo gris oscuro
+  const C='#555';
+  const W=14,H=14;
+  let svg='';
+
+  // Casos posibles:
+  // from=right  to=right  → flecha derecha simple  ──→
+  // from=bottom to=bottom → flecha abajo simple     ↓
+  // from=right  to=bottom → codo ┐↓  (la pista llega por derecha, respuesta baja)
+  // from=bottom to=right  → codo └→  (la pista llega por abajo, respuesta va derecha)
+  // from=bottom to=right  también puede ser L-shape distinto
+
+  if(from==='right'&&to==='right'){
+    svg=`<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
+      <line x1="1" y1="7" x2="11" y2="7" stroke="${C}" stroke-width="1.8" stroke-linecap="round"/>
+      <polyline points="8,4 12,7 8,10" stroke="${C}" stroke-width="1.8" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+    </svg>`;
+  } else if(from==='bottom'&&to==='bottom'){
+    svg=`<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
+      <line x1="7" y1="1" x2="7" y2="11" stroke="${C}" stroke-width="1.8" stroke-linecap="round"/>
+      <polyline points="4,8 7,12 10,8" stroke="${C}" stroke-width="1.8" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+    </svg>`;
+  } else if((from==='right'||from==='left')&&(to==='bottom'||to==='down')){
+    // Codo: entra por derecha (o izquierda), sale hacia abajo — forma ┐ con punta abajo
+    svg=`<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
+      <polyline points="2,5 9,5 9,12" stroke="${C}" stroke-width="1.8" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+      <polyline points="6,9 9,13 12,9" stroke="${C}" stroke-width="1.8" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+    </svg>`;
+  } else if((from==='bottom'||from==='top')&&(to==='right')){
+    // Codo: entra por abajo (o arriba), sale hacia derecha — forma └ con punta derecha
+    svg=`<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
+      <polyline points="5,2 5,9 12,9" stroke="${C}" stroke-width="1.8" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+      <polyline points="9,6 13,9 9,12" stroke="${C}" stroke-width="1.8" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+    </svg>`;
+  } else if(to==='right'){
+    svg=`<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
+      <line x1="1" y1="7" x2="11" y2="7" stroke="${C}" stroke-width="1.8" stroke-linecap="round"/>
+      <polyline points="8,4 12,7 8,10" stroke="${C}" stroke-width="1.8" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+    </svg>`;
+  } else {
+    svg=`<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
+      <line x1="7" y1="1" x2="7" y2="11" stroke="${C}" stroke-width="1.8" stroke-linecap="round"/>
+      <polyline points="4,8 7,12 10,8" stroke="${C}" stroke-width="1.8" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+    </svg>`;
+  }
+  wrap.innerHTML=svg;
+  return wrap;
 }
 
-// ──────────────────────────────────────────────────────────────────────
-// INTERACCIÓN
-// ──────────────────────────────────────────────────────────────────────
-function onCellClick(col,row,inp){
+function makeClueText(s){
+  const span=document.createElement('span');
+  span.className='clue-text';
+  span.innerHTML=(s||'').replace(/\\n/g,'<br>').replace(/\n/g,'<br>');
+  return span;
+}
+
+// ════════════════════════════════════════════════════════════════════
+// INTERACCIÓN — SELECCIÓN
+// ════════════════════════════════════════════════════════════════════
+
+// FIX: usar mousedown en vez de click para evitar que el blur del input
+// deje celdas en estado incorrecto. También evita el doble-highlight.
+function onCellMousedown(col,row,inp,el){
   if(gameFinished) return;
-  inp.focus();
-  // Si ya está seleccionada la misma celda, cambiar dirección
-  if(selCol===col && selRow===row) {
-    // cambiar dirección
-    const newDir = selDir==='right'?'bottom':'right';
-    const wid = findWordAt(col,row,newDir);
-    if(wid) { selDir=newDir; selWordId=wid; }
-  } else {
-    selCol=col; selRow=row;
-    // intentar mantener dirección, o elegir la que tenga palabra
-    const widH = findWordAt(col,row,'right');
-    const widV = findWordAt(col,row,'bottom');
-    if(selDir==='right'&&widH) selWordId=widH;
-    else if(selDir==='bottom'&&widV) selWordId=widV;
-    else if(widH){ selDir='right'; selWordId=widH; }
-    else if(widV){ selDir='bottom'; selWordId=widV; }
-    else { selDir='right'; selWordId=null; }
-  }
-  highlightSelection();
+  // Prevenir que el mousedown quite el foco antes de que procese el click
+  // (el focus se gestiona manualmente)
+  setTimeout(()=>{
+    if(selCol===col&&selRow===row){
+      // misma celda → cambiar dirección si hay palabra en la otra
+      const otherDir=selDir==='right'?'bottom':'right';
+      const otherWid=findWordAt(col,row,otherDir);
+      if(otherWid){selDir=otherDir;selWordId=otherWid;}
+    } else {
+      selCol=col; selRow=row;
+      // Intentar mantener dirección actual, si no hay, usar la que exista
+      const widSame=findWordAt(col,row,selDir||'right');
+      const widH=findWordAt(col,row,'right');
+      const widV=findWordAt(col,row,'bottom');
+      if(selDir&&widSame){ selWordId=widSame; }
+      else if(widH){ selDir='right'; selWordId=widH; }
+      else if(widV){ selDir='bottom'; selWordId=widV; }
+      else { selWordId=null; }
+    }
+    applyHighlight();
+    inp.focus();
+  },0);
 }
 
 function findWordAt(col,row,dir){
-  for(const [wid,w] of Object.entries(wordMap)){
-    if(w.dir===dir && w.cells.some(c=>c.col===col&&c.row===row)) return parseInt(wid);
-  }
-  return null;
+  const k=col+','+row;
+  const ws=cellToWords[k]||[];
+  const match=ws.find(w=>w.dir===dir);
+  return match?match.wordId:null;
 }
 
-function highlightSelection(){
-  // Quitar highlights
+// FIX: separar highlight de la lógica de selección para no acumularlo
+function applyHighlight(){
+  // Limpiar todos los highlights primero
   document.querySelectorAll('.cell-play').forEach(el=>{
-    el.classList.remove('selected','word-selected');
+    el.classList.remove('selected','word-hl');
   });
   if(selWordId===null) return;
-  const w = wordMap[selWordId];
+  const w=wordMap[selWordId];
   if(!w) return;
-  // Highlight de la palabra
-  for(const c of w.cells){
-    c.el.classList.add('word-selected');
-  }
-  // Highlight de la celda actual
-  const curEl = document.querySelector(`.cell-play[data-col="${selCol}"][data-row="${selRow}"]`);
-  if(curEl){ curEl.classList.remove('word-selected'); curEl.classList.add('selected'); }
+  // Marcar la palabra completa
+  for(const c of w.cells) c.el.classList.add('word-hl');
+  // Marcar la celda activa encima
+  const curEl=document.querySelector(`.cell-play[data-col="${selCol}"][data-row="${selRow}"]`);
+  if(curEl){ curEl.classList.remove('word-hl'); curEl.classList.add('selected'); }
 }
 
+// ════════════════════════════════════════════════════════════════════
+// TECLADO
+// ════════════════════════════════════════════════════════════════════
 function onKeyDown(e,col,row,inp){
   if(gameFinished) return;
-  if(e.key==='ArrowRight'){ e.preventDefault(); moveDir(col,row,'right'); }
-  else if(e.key==='ArrowLeft'){ e.preventDefault(); moveDir(col,row,'left'); }
-  else if(e.key==='ArrowDown'){ e.preventDefault(); moveDir(col,row,'down'); }
-  else if(e.key==='ArrowUp'){ e.preventDefault(); moveDir(col,row,'up'); }
-  else if(e.key==='Backspace'||e.key==='Delete'){
+
+  if(e.key==='ArrowRight'){
+    e.preventDefault();
+    if(selDir!=='right'){ selDir='right'; const w=findWordAt(col,row,'right'); if(w)selWordId=w; applyHighlight(); }
+    else advanceInWord(col,row,1,0);
+  } else if(e.key==='ArrowLeft'){
+    e.preventDefault();
+    if(selDir!=='right'){ selDir='right'; const w=findWordAt(col,row,'right'); if(w)selWordId=w; applyHighlight(); }
+    else advanceInWord(col,row,-1,0);
+  } else if(e.key==='ArrowDown'){
+    e.preventDefault();
+    if(selDir!=='bottom'){ selDir='bottom'; const w=findWordAt(col,row,'bottom'); if(w)selWordId=w; applyHighlight(); }
+    else advanceInWord(col,row,0,1);
+  } else if(e.key==='ArrowUp'){
+    e.preventDefault();
+    if(selDir!=='bottom'){ selDir='bottom'; const w=findWordAt(col,row,'bottom'); if(w)selWordId=w; applyHighlight(); }
+    else advanceInWord(col,row,0,-1);
+  } else if(e.key==='Backspace'||e.key==='Delete'){
     if(inp.value===''){
       e.preventDefault();
-      // Retroceder
-      if(selDir==='right') moveDir(col,row,'left');
-      else moveDir(col,row,'up');
+      // retroceder en la dirección actual
+      if(selDir==='right') advanceInWord(col,row,-1,0);
+      else                 advanceInWord(col,row,0,-1);
     } else {
       inp.value='';
       inp.closest('.cell-play').classList.remove('correct','wrong');
     }
   } else if(e.key==='Tab'){
-    e.preventDefault();
-    nextWord(e.shiftKey);
+    e.preventDefault(); nextWord(e.shiftKey);
   }
 }
 
 function onInput(e,col,row,inp){
   if(gameFinished) return;
-  const v = inp.value.toUpperCase().replace(/[^A-ZÁÉÍÓÚÜÑ]/g,'');
-  inp.value = v ? v[v.length-1] : '';
-  if(inp.value) {
-    inp.closest('.cell-play').classList.remove('correct','wrong');
-    // avanzar automáticamente
-    if(selDir==='right') moveDir(col,row,'right');
-    else if(selDir==='bottom') moveDir(col,row,'down');
-    // Comprobar si completado
-    checkComplete();
-  }
+  // Normalizar: quedarse solo con la última letra válida
+  const v=inp.value.toUpperCase().replace(/[^A-ZÁÉÍÓÚÜÑ]/g,'');
+  inp.value=v?v[v.length-1]:'';
+  if(!inp.value) return;
+  inp.closest('.cell-play').classList.remove('correct','wrong');
+  // Avanzar automáticamente
+  if(selDir==='right')       advanceInWord(col,row,1,0);
+  else if(selDir==='bottom') advanceInWord(col,row,0,1);
+  checkComplete();
 }
 
-function moveDir(col,row,dir){
-  let nc=col,nr=row;
-  if(dir==='right')nc++;
-  else if(dir==='left')nc--;
-  else if(dir==='down')nr++;
-  else if(dir==='up')nr--;
-  const target = document.querySelector(`.cell-play[data-col="${nc}"][data-row="${nr}"]`);
+// Avanzar dentro de la palabra activa (o saltar a siguiente)
+function advanceInWord(col,row,dc,dr){
+  const nc=col+dc, nr=row+dr;
+  const target=document.querySelector(`.cell-play[data-col="${nc}"][data-row="${nr}"]`);
   if(target){
     selCol=nc; selRow=nr;
-    // actualizar palabra si cambiamos dirección por flecha
-    if(dir==='right'||dir==='left') selDir='right';
-    else selDir='bottom';
-    const wid = findWordAt(nc,nr,selDir)||findWordAt(nc,nr,selDir==='right'?'bottom':'right');
-    if(!findWordAt(nc,nr,selDir)&&wid){ selDir=selDir==='right'?'bottom':'right'; selWordId=wid; }
-    else selWordId=findWordAt(nc,nr,selDir)||null;
-    highlightSelection();
+    // mantener dirección
+    const wid=findWordAt(nc,nr,selDir);
+    if(wid) selWordId=wid;
+    applyHighlight();
     target.querySelector('input').focus();
   }
 }
 
+// Saltar a la siguiente/anterior palabra
 function nextWord(prev=false){
-  const wids = Object.keys(wordMap).map(Number).sort((a,b)=>a-b);
+  const wids=Object.keys(wordMap).map(Number).sort((a,b)=>a-b);
   if(!wids.length) return;
-  const idx = wids.indexOf(selWordId);
-  let next = prev ? (idx-1+wids.length)%wids.length : (idx+1)%wids.length;
-  const w = wordMap[wids[next]];
+  const idx=selWordId===null?-1:wids.indexOf(selWordId);
+  const next=prev?(idx-1+wids.length)%wids.length:(idx+1)%wids.length;
+  const w=wordMap[wids[next]];
   if(w&&w.cells.length){
-    const c = w.cells[0];
+    const c=w.cells[0];
     selWordId=wids[next]; selDir=w.dir; selCol=c.col; selRow=c.row;
-    highlightSelection();
+    applyHighlight();
     c.inp.focus();
   }
 }
 
-// ──────────────────────────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════
 // ACCIONES
-// ──────────────────────────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════
 function checkAll(){
-  let errors=0, empty=0;
+  let errors=0,empty=0;
   document.querySelectorAll('.cell-play').forEach(el=>{
     const inp=el.querySelector('input');
-    const sol=el.dataset.solution?.toUpperCase()||'';
+    const sol=(el.dataset.solution||'').toUpperCase();
     if(!inp.value){empty++;return;}
     if(inp.value.toUpperCase()===sol){el.classList.add('correct');el.classList.remove('wrong');}
     else{el.classList.add('wrong');el.classList.remove('correct');errors++;}
   });
   const bar=document.getElementById('status-bar');
   if(empty>0){bar.innerHTML=`<span class="status-err">Faltan ${empty} celdas por rellenar.</span>`;bar.className='status-bar show';}
-  else if(errors>0){bar.innerHTML=`<span class="status-err">${errors} celda(s) incorrecta(s).</span>`;bar.className='status-bar show';}
-  else{bar.innerHTML=`<span class="status-ok">¡Todo correcto!</span>`;bar.className='status-bar show';}
+  else if(errors>0){bar.innerHTML=`<span class="status-err">${errors} celda(s) incorrecta(s). Las celdas en rojo tienen errores.</span>`;bar.className='status-bar show';}
+  else{bar.innerHTML=`<span class="status-ok">✓ ¡Todo correcto!</span>`;bar.className='status-bar show';}
 }
 
 function revealAll(){
   document.querySelectorAll('.cell-play').forEach(el=>{
     const inp=el.querySelector('input');
-    const sol=el.dataset.solution||'';
-    inp.value=sol;
+    inp.value=el.dataset.solution||'';
     el.classList.add('correct');el.classList.remove('wrong');
   });
-  stopTimer(); gameFinished=true;
-  showStatus('<span class="status-ok">Puzzle revelado.</span>');
+  stopTimer();gameFinished=true;
+  const bar=document.getElementById('status-bar');
+  bar.innerHTML=`<span class="status-ok">Puzzle revelado.</span>`;bar.className='status-bar show';
 }
 
 function clearAll(){
@@ -533,44 +718,32 @@ function clearAll(){
   if(bar) bar.className='status-bar';
 }
 
-function showStatus(html){
-  const bar=document.getElementById('status-bar');
-  if(bar){bar.innerHTML=html;bar.className='status-bar show';}
-}
-
 function checkComplete(){
-  const all = document.querySelectorAll('.cell-play');
+  const all=document.querySelectorAll('.cell-play');
   for(const el of all){
     const inp=el.querySelector('input');
-    const sol=el.dataset.solution?.toUpperCase()||'';
-    if(!inp.value||(inp.value.toUpperCase()!==sol)) return;
+    const sol=(el.dataset.solution||'').toUpperCase();
+    if(!inp.value||inp.value.toUpperCase()!==sol) return;
   }
-  // ¡Todo correcto!
-  stopTimer(); gameFinished=true;
-  document.getElementById('modal-time').textContent=formatTime(timerSeconds);
+  stopTimer();gameFinished=true;
+  document.getElementById('modal-time').textContent=formatTime(timerSec);
   document.getElementById('modal-win').classList.add('show');
 }
 
-// ──────────────────────────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════
 // TIMER
-// ──────────────────────────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════
 function startTimer(){
-  timerSeconds=0; updateTimerDisplay();
-  timerInterval=setInterval(()=>{timerSeconds++;updateTimerDisplay();},1000);
+  timerSec=0; updateTimerEl();
+  timerInterval=setInterval(()=>{timerSec++;updateTimerEl();},1000);
 }
 function stopTimer(){clearInterval(timerInterval);timerInterval=null;}
-function updateTimerDisplay(){
-  const el=document.getElementById('timer-display');
-  if(el) el.textContent=formatTime(timerSeconds);
-}
-function formatTime(s){
-  const m=Math.floor(s/60);
-  return String(m).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
-}
+function updateTimerEl(){const el=document.getElementById('timer-display');if(el)el.textContent=formatTime(timerSec);}
+function formatTime(s){return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');}
 
-// ──────────────────────────────────────────────────────────────────────
-// STATS
-// ──────────────────────────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════
+// ESTADÍSTICAS
+// ════════════════════════════════════════════════════════════════════
 function updateStats(idx){
   document.getElementById('st-total').textContent=idx.total||0;
   const dates=(idx.dates||[]).slice().sort().reverse();
@@ -586,9 +759,9 @@ function updateStats(idx){
   }
 }
 
-// ──────────────────────────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════
 // ARRANQUE
-// ──────────────────────────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════
 init();
 </script>
 </body>
