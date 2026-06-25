@@ -1,0 +1,2078 @@
+{
+  "date": "2026-06-25",
+  "scraped_at": "2026-06-25T01:49:30.857057Z",
+  "source": "https://backend.smartgames.media/api/game/self_defined/last",
+  "grid_cols": 10,
+  "grid_rows": 12,
+  "grid": [
+    [
+      2,
+      1,
+      2,
+      2,
+      1,
+      2,
+      1,
+      2,
+      2,
+      2
+    ],
+    [
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      2,
+      1,
+      1,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      2,
+      2,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      1,
+      1,
+      1
+    ],
+    [
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2
+    ],
+    [
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      1,
+      1
+    ],
+    [
+      2,
+      1,
+      1,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      2,
+      1,
+      1,
+      1,
+      1,
+      2,
+      1,
+      1,
+      1,
+      1
+    ]
+  ],
+  "board": [
+    {
+      "col": 0,
+      "row": 4,
+      "type": "cell",
+      "value": "",
+      "solution": "R",
+      "wordIds": [
+        5
+      ]
+    },
+    {
+      "col": 0,
+      "row": 6,
+      "type": "cell",
+      "value": "",
+      "solution": "G",
+      "wordIds": [
+        8
+      ]
+    },
+    {
+      "col": 0,
+      "row": 10,
+      "type": "cell",
+      "value": "",
+      "solution": "C",
+      "wordIds": [
+        15
+      ]
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "type": "cell",
+      "value": "",
+      "solution": "V",
+      "wordIds": [
+        19
+      ]
+    },
+    {
+      "col": 1,
+      "row": 1,
+      "type": "cell",
+      "value": "",
+      "solution": "E",
+      "wordIds": [
+        1,
+        19
+      ]
+    },
+    {
+      "col": 1,
+      "row": 2,
+      "type": "cell",
+      "value": "",
+      "solution": "R",
+      "wordIds": [
+        2,
+        19
+      ]
+    },
+    {
+      "col": 1,
+      "row": 3,
+      "type": "cell",
+      "value": "",
+      "solution": "M",
+      "wordIds": [
+        3,
+        19
+      ]
+    },
+    {
+      "col": 1,
+      "row": 4,
+      "type": "cell",
+      "value": "",
+      "solution": "E",
+      "wordIds": [
+        5,
+        19
+      ]
+    },
+    {
+      "col": 1,
+      "row": 6,
+      "type": "cell",
+      "value": "",
+      "solution": "I",
+      "wordIds": [
+        8,
+        30
+      ]
+    },
+    {
+      "col": 1,
+      "row": 7,
+      "type": "cell",
+      "value": "",
+      "solution": "S",
+      "wordIds": [
+        10,
+        30
+      ]
+    },
+    {
+      "col": 1,
+      "row": 8,
+      "type": "cell",
+      "value": "",
+      "solution": "A",
+      "wordIds": [
+        11,
+        30
+      ]
+    },
+    {
+      "col": 1,
+      "row": 9,
+      "type": "cell",
+      "value": "",
+      "solution": "B",
+      "wordIds": [
+        13,
+        30
+      ]
+    },
+    {
+      "col": 1,
+      "row": 10,
+      "type": "cell",
+      "value": "",
+      "solution": "E",
+      "wordIds": [
+        15,
+        30
+      ]
+    },
+    {
+      "col": 1,
+      "row": 11,
+      "type": "cell",
+      "value": "",
+      "solution": "L",
+      "wordIds": [
+        17,
+        30
+      ]
+    },
+    {
+      "col": 2,
+      "row": 1,
+      "type": "cell",
+      "value": "",
+      "solution": "N",
+      "wordIds": [
+        1,
+        22
+      ]
+    },
+    {
+      "col": 2,
+      "row": 2,
+      "type": "cell",
+      "value": "",
+      "solution": "E",
+      "wordIds": [
+        2,
+        22
+      ]
+    },
+    {
+      "col": 2,
+      "row": 3,
+      "type": "cell",
+      "value": "",
+      "solution": "W",
+      "wordIds": [
+        3,
+        22
+      ]
+    },
+    {
+      "col": 2,
+      "row": 4,
+      "type": "cell",
+      "value": "",
+      "solution": "T",
+      "wordIds": [
+        5,
+        22
+      ]
+    },
+    {
+      "col": 2,
+      "row": 6,
+      "type": "cell",
+      "value": "",
+      "solution": "L",
+      "wordIds": [
+        8,
+        31
+      ]
+    },
+    {
+      "col": 2,
+      "row": 7,
+      "type": "cell",
+      "value": "",
+      "solution": "A",
+      "wordIds": [
+        10,
+        31
+      ]
+    },
+    {
+      "col": 2,
+      "row": 8,
+      "type": "cell",
+      "value": "",
+      "solution": "P",
+      "wordIds": [
+        11,
+        31
+      ]
+    },
+    {
+      "col": 2,
+      "row": 9,
+      "type": "cell",
+      "value": "",
+      "solution": "E",
+      "wordIds": [
+        13,
+        31
+      ]
+    },
+    {
+      "col": 2,
+      "row": 10,
+      "type": "cell",
+      "value": "",
+      "solution": "P",
+      "wordIds": [
+        15,
+        31
+      ]
+    },
+    {
+      "col": 2,
+      "row": 11,
+      "type": "cell",
+      "value": "",
+      "solution": "A",
+      "wordIds": [
+        17,
+        31
+      ]
+    },
+    {
+      "col": 3,
+      "row": 1,
+      "type": "cell",
+      "value": "",
+      "solution": "C",
+      "wordIds": [
+        1,
+        23
+      ]
+    },
+    {
+      "col": 3,
+      "row": 2,
+      "type": "cell",
+      "value": "",
+      "solution": "P",
+      "wordIds": [
+        2,
+        23
+      ]
+    },
+    {
+      "col": 3,
+      "row": 4,
+      "type": "cell",
+      "value": "",
+      "solution": "O",
+      "wordIds": [
+        5,
+        28
+      ]
+    },
+    {
+      "col": 3,
+      "row": 5,
+      "type": "cell",
+      "value": "",
+      "solution": "P",
+      "wordIds": [
+        7,
+        28
+      ]
+    },
+    {
+      "col": 3,
+      "row": 6,
+      "type": "cell",
+      "value": "",
+      "solution": "O",
+      "wordIds": [
+        8,
+        28
+      ]
+    },
+    {
+      "col": 3,
+      "row": 7,
+      "type": "cell",
+      "value": "",
+      "solution": "N",
+      "wordIds": [
+        10,
+        28
+      ]
+    },
+    {
+      "col": 3,
+      "row": 8,
+      "type": "cell",
+      "value": "",
+      "solution": "E",
+      "wordIds": [
+        11,
+        28
+      ]
+    },
+    {
+      "col": 3,
+      "row": 10,
+      "type": "cell",
+      "value": "",
+      "solution": "O",
+      "wordIds": [
+        15,
+        37
+      ]
+    },
+    {
+      "col": 3,
+      "row": 11,
+      "type": "cell",
+      "value": "",
+      "solution": "Z",
+      "wordIds": [
+        17,
+        37
+      ]
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "type": "cell",
+      "value": "",
+      "solution": "M",
+      "wordIds": [
+        20
+      ]
+    },
+    {
+      "col": 4,
+      "row": 1,
+      "type": "cell",
+      "value": "",
+      "solution": "A",
+      "wordIds": [
+        1,
+        20
+      ]
+    },
+    {
+      "col": 4,
+      "row": 2,
+      "type": "cell",
+      "value": "",
+      "solution": "R",
+      "wordIds": [
+        2,
+        20
+      ]
+    },
+    {
+      "col": 4,
+      "row": 3,
+      "type": "cell",
+      "value": "",
+      "solution": "C",
+      "wordIds": [
+        4,
+        20
+      ]
+    },
+    {
+      "col": 4,
+      "row": 5,
+      "type": "cell",
+      "value": "",
+      "solution": "A",
+      "wordIds": [
+        7,
+        29
+      ]
+    },
+    {
+      "col": 4,
+      "row": 6,
+      "type": "cell",
+      "value": "",
+      "solution": "T",
+      "wordIds": [
+        8,
+        29
+      ]
+    },
+    {
+      "col": 4,
+      "row": 7,
+      "type": "cell",
+      "value": "",
+      "solution": "E",
+      "wordIds": [
+        10,
+        29
+      ]
+    },
+    {
+      "col": 4,
+      "row": 8,
+      "type": "cell",
+      "value": "",
+      "solution": "A",
+      "wordIds": [
+        11,
+        29
+      ]
+    },
+    {
+      "col": 4,
+      "row": 9,
+      "type": "cell",
+      "value": "",
+      "solution": "S",
+      "wordIds": [
+        14,
+        29
+      ]
+    },
+    {
+      "col": 4,
+      "row": 11,
+      "type": "cell",
+      "value": "",
+      "solution": "O",
+      "wordIds": [
+        17
+      ]
+    },
+    {
+      "col": 5,
+      "row": 1,
+      "type": "cell",
+      "value": "",
+      "solution": "D",
+      "wordIds": [
+        1,
+        24
+      ]
+    },
+    {
+      "col": 5,
+      "row": 2,
+      "type": "cell",
+      "value": "",
+      "solution": "O",
+      "wordIds": [
+        2,
+        24
+      ]
+    },
+    {
+      "col": 5,
+      "row": 3,
+      "type": "cell",
+      "value": "",
+      "solution": "L",
+      "wordIds": [
+        4,
+        24
+      ]
+    },
+    {
+      "col": 5,
+      "row": 4,
+      "type": "cell",
+      "value": "",
+      "solution": "O",
+      "wordIds": [
+        6,
+        24
+      ]
+    },
+    {
+      "col": 5,
+      "row": 5,
+      "type": "cell",
+      "value": "",
+      "solution": "R",
+      "wordIds": [
+        7,
+        24
+      ]
+    },
+    {
+      "col": 5,
+      "row": 7,
+      "type": "cell",
+      "value": "",
+      "solution": "A",
+      "wordIds": [
+        10,
+        32
+      ]
+    },
+    {
+      "col": 5,
+      "row": 8,
+      "type": "cell",
+      "value": "",
+      "solution": "R",
+      "wordIds": [
+        11,
+        32
+      ]
+    },
+    {
+      "col": 5,
+      "row": 9,
+      "type": "cell",
+      "value": "",
+      "solution": "I",
+      "wordIds": [
+        14,
+        32
+      ]
+    },
+    {
+      "col": 5,
+      "row": 10,
+      "type": "cell",
+      "value": "",
+      "solution": "O",
+      "wordIds": [
+        16,
+        32
+      ]
+    },
+    {
+      "col": 6,
+      "row": 0,
+      "type": "cell",
+      "value": "",
+      "solution": "R",
+      "wordIds": [
+        21
+      ]
+    },
+    {
+      "col": 6,
+      "row": 1,
+      "type": "cell",
+      "value": "",
+      "solution": "E",
+      "wordIds": [
+        1,
+        21
+      ]
+    },
+    {
+      "col": 6,
+      "row": 2,
+      "type": "cell",
+      "value": "",
+      "solution": "B",
+      "wordIds": [
+        2,
+        21
+      ]
+    },
+    {
+      "col": 6,
+      "row": 3,
+      "type": "cell",
+      "value": "",
+      "solution": "A",
+      "wordIds": [
+        4,
+        21
+      ]
+    },
+    {
+      "col": 6,
+      "row": 4,
+      "type": "cell",
+      "value": "",
+      "solution": "S",
+      "wordIds": [
+        6,
+        21
+      ]
+    },
+    {
+      "col": 6,
+      "row": 5,
+      "type": "cell",
+      "value": "",
+      "solution": "A",
+      "wordIds": [
+        7,
+        21
+      ]
+    },
+    {
+      "col": 6,
+      "row": 7,
+      "type": "cell",
+      "value": "",
+      "solution": "R",
+      "wordIds": [
+        10,
+        33
+      ]
+    },
+    {
+      "col": 6,
+      "row": 8,
+      "type": "cell",
+      "value": "",
+      "solution": "A",
+      "wordIds": [
+        11,
+        33
+      ]
+    },
+    {
+      "col": 6,
+      "row": 9,
+      "type": "cell",
+      "value": "",
+      "solution": "L",
+      "wordIds": [
+        14,
+        33
+      ]
+    },
+    {
+      "col": 6,
+      "row": 10,
+      "type": "cell",
+      "value": "",
+      "solution": "L",
+      "wordIds": [
+        16,
+        33
+      ]
+    },
+    {
+      "col": 6,
+      "row": 11,
+      "type": "cell",
+      "value": "",
+      "solution": "O",
+      "wordIds": [
+        18,
+        33
+      ]
+    },
+    {
+      "col": 7,
+      "row": 1,
+      "type": "cell",
+      "value": "",
+      "solution": "N",
+      "wordIds": [
+        1,
+        25
+      ]
+    },
+    {
+      "col": 7,
+      "row": 2,
+      "type": "cell",
+      "value": "",
+      "solution": "A",
+      "wordIds": [
+        2,
+        25
+      ]
+    },
+    {
+      "col": 7,
+      "row": 3,
+      "type": "cell",
+      "value": "",
+      "solution": "V",
+      "wordIds": [
+        4,
+        25
+      ]
+    },
+    {
+      "col": 7,
+      "row": 4,
+      "type": "cell",
+      "value": "",
+      "solution": "A",
+      "wordIds": [
+        6,
+        25
+      ]
+    },
+    {
+      "col": 7,
+      "row": 5,
+      "type": "cell",
+      "value": "",
+      "solution": "R",
+      "wordIds": [
+        7,
+        25
+      ]
+    },
+    {
+      "col": 7,
+      "row": 6,
+      "type": "cell",
+      "value": "",
+      "solution": "R",
+      "wordIds": [
+        9,
+        25
+      ]
+    },
+    {
+      "col": 7,
+      "row": 7,
+      "type": "cell",
+      "value": "",
+      "solution": "A",
+      "wordIds": [
+        10,
+        25
+      ]
+    },
+    {
+      "col": 7,
+      "row": 9,
+      "type": "cell",
+      "value": "",
+      "solution": "V",
+      "wordIds": [
+        14,
+        36
+      ]
+    },
+    {
+      "col": 7,
+      "row": 10,
+      "type": "cell",
+      "value": "",
+      "solution": "I",
+      "wordIds": [
+        16,
+        36
+      ]
+    },
+    {
+      "col": 7,
+      "row": 11,
+      "type": "cell",
+      "value": "",
+      "solution": "P",
+      "wordIds": [
+        18,
+        36
+      ]
+    },
+    {
+      "col": 8,
+      "row": 1,
+      "type": "cell",
+      "value": "",
+      "solution": "A",
+      "wordIds": [
+        1,
+        26
+      ]
+    },
+    {
+      "col": 8,
+      "row": 2,
+      "type": "cell",
+      "value": "",
+      "solution": "D",
+      "wordIds": [
+        2,
+        26
+      ]
+    },
+    {
+      "col": 8,
+      "row": 3,
+      "type": "cell",
+      "value": "",
+      "solution": "E",
+      "wordIds": [
+        4,
+        26
+      ]
+    },
+    {
+      "col": 8,
+      "row": 4,
+      "type": "cell",
+      "value": "",
+      "solution": "M",
+      "wordIds": [
+        6,
+        26
+      ]
+    },
+    {
+      "col": 8,
+      "row": 5,
+      "type": "cell",
+      "value": "",
+      "solution": "A",
+      "wordIds": [
+        7,
+        26
+      ]
+    },
+    {
+      "col": 8,
+      "row": 6,
+      "type": "cell",
+      "value": "",
+      "solution": "S",
+      "wordIds": [
+        9,
+        26
+      ]
+    },
+    {
+      "col": 8,
+      "row": 8,
+      "type": "cell",
+      "value": "",
+      "solution": "F",
+      "wordIds": [
+        12,
+        34
+      ]
+    },
+    {
+      "col": 8,
+      "row": 9,
+      "type": "cell",
+      "value": "",
+      "solution": "I",
+      "wordIds": [
+        14,
+        34
+      ]
+    },
+    {
+      "col": 8,
+      "row": 10,
+      "type": "cell",
+      "value": "",
+      "solution": "A",
+      "wordIds": [
+        16,
+        34
+      ]
+    },
+    {
+      "col": 8,
+      "row": 11,
+      "type": "cell",
+      "value": "",
+      "solution": "T",
+      "wordIds": [
+        18,
+        34
+      ]
+    },
+    {
+      "col": 9,
+      "row": 1,
+      "type": "cell",
+      "value": "",
+      "solution": "R",
+      "wordIds": [
+        1,
+        27
+      ]
+    },
+    {
+      "col": 9,
+      "row": 2,
+      "type": "cell",
+      "value": "",
+      "solution": "O",
+      "wordIds": [
+        2,
+        27
+      ]
+    },
+    {
+      "col": 9,
+      "row": 3,
+      "type": "cell",
+      "value": "",
+      "solution": "S",
+      "wordIds": [
+        4,
+        27
+      ]
+    },
+    {
+      "col": 9,
+      "row": 4,
+      "type": "cell",
+      "value": "",
+      "solution": "A",
+      "wordIds": [
+        6,
+        27
+      ]
+    },
+    {
+      "col": 9,
+      "row": 5,
+      "type": "cell",
+      "value": "",
+      "solution": "N",
+      "wordIds": [
+        7,
+        27
+      ]
+    },
+    {
+      "col": 9,
+      "row": 6,
+      "type": "cell",
+      "value": "",
+      "solution": "A",
+      "wordIds": [
+        9,
+        27
+      ]
+    },
+    {
+      "col": 9,
+      "row": 8,
+      "type": "cell",
+      "value": "",
+      "solution": "B",
+      "wordIds": [
+        12,
+        35
+      ]
+    },
+    {
+      "col": 9,
+      "row": 9,
+      "type": "cell",
+      "value": "",
+      "solution": "A",
+      "wordIds": [
+        14,
+        35
+      ]
+    },
+    {
+      "col": 9,
+      "row": 10,
+      "type": "cell",
+      "value": "",
+      "solution": "S",
+      "wordIds": [
+        16,
+        35
+      ]
+    },
+    {
+      "col": 9,
+      "row": 11,
+      "type": "cell",
+      "value": "",
+      "solution": "E",
+      "wordIds": [
+        18,
+        35
+      ]
+    },
+    {
+      "col": 0,
+      "row": 0,
+      "type": "clue",
+      "value": "LA JOVEN\\nDE LA\\nPERLA\\nPARECE\\nMIRARME.",
+      "wordId": 19,
+      "orientation": {
+        "to": "bottom",
+        "from": "right"
+      }
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "type": "clue",
+      "value": "ATAR CON\\nCADENAS.",
+      "wordId": 1,
+      "orientation": {
+        "to": "right",
+        "from": "right"
+      }
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "type": "clue",
+      "value": "NO HA\\nLOGRADO\\nNI UN 5",
+      "wordId": 2,
+      "orientation": {
+        "to": "right",
+        "from": "right"
+      }
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "type": "clues",
+      "values": [
+        "MAISIE\\nWILLIAM",
+        "META\\nPERSONAL"
+      ],
+      "wordIds": [
+        3,
+        5
+      ],
+      "orientations": [
+        {
+          "to": "right",
+          "from": "right"
+        },
+        {
+          "to": "right",
+          "from": "bottom"
+        }
+      ]
+    },
+    {
+      "col": 0,
+      "row": 5,
+      "type": "clue",
+      "value": "FRANÇOISE\\n...\\n(PINTORA\\nFRANCESA)",
+      "wordId": 8,
+      "orientation": {
+        "to": "right",
+        "from": "bottom"
+      }
+    },
+    {
+      "col": 0,
+      "row": 7,
+      "type": "clue",
+      "value": "HIGIENI-\\nZARÁ",
+      "wordId": 10,
+      "orientation": {
+        "to": "right",
+        "from": "right"
+      }
+    },
+    {
+      "col": 0,
+      "row": 8,
+      "type": "clue",
+      "value": "DESMON-\\nTARÁ EL\\nCABALLO",
+      "wordId": 11,
+      "orientation": {
+        "to": "right",
+        "from": "right"
+      }
+    },
+    {
+      "col": 0,
+      "row": 9,
+      "type": "clues",
+      "values": [
+        "¡DAME LA\\nB!...",
+        "CAJA DE\\nLIMOSNAS"
+      ],
+      "wordIds": [
+        13,
+        15
+      ],
+      "orientations": [
+        {
+          "to": "right",
+          "from": "right"
+        },
+        {
+          "to": "right",
+          "from": "bottom"
+        }
+      ]
+    },
+    {
+      "col": 0,
+      "row": 11,
+      "type": "clue",
+      "value": "NUDO DE\\nCINTAS",
+      "wordId": 17,
+      "orientation": {
+        "to": "right",
+        "from": "right"
+      }
+    },
+    {
+      "col": 1,
+      "row": 5,
+      "type": "clue",
+      "value": "BAILES\\nMAL CON\\nLA REINA\\nDE INGLA-\\nTERRA",
+      "wordId": 30,
+      "orientation": {
+        "to": "bottom",
+        "from": "bottom"
+      }
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "type": "clue",
+      "value": "EL\\nMAGIZOÓ-\\nLOGO DE JK\\nROWLING",
+      "wordId": 22,
+      "orientation": {
+        "to": "bottom",
+        "from": "bottom"
+      }
+    },
+    {
+      "col": 2,
+      "row": 5,
+      "type": "clues",
+      "values": [
+        "DETENDRÁN",
+        "CONSTITU-\\nCIÓN DE\\n1812 (2P)"
+      ],
+      "wordIds": [
+        7,
+        31
+      ],
+      "orientations": [
+        {
+          "to": "right",
+          "from": "right"
+        },
+        {
+          "to": "bottom",
+          "from": "bottom"
+        }
+      ]
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "type": "clues",
+      "values": [
+        "... MÁRQUEZ\\n(MOTO GP)",
+        "CÓDIGO\\nPOSTAL"
+      ],
+      "wordIds": [
+        20,
+        23
+      ],
+      "orientations": [
+        {
+          "to": "bottom",
+          "from": "right"
+        },
+        {
+          "to": "bottom",
+          "from": "bottom"
+        }
+      ]
+    },
+    {
+      "col": 3,
+      "row": 3,
+      "type": "clues",
+      "values": [
+        "CONTRA-\\nSEÑAS",
+        "SE PONE EN\\nCONTRA"
+      ],
+      "wordIds": [
+        4,
+        28
+      ],
+      "orientations": [
+        {
+          "to": "right",
+          "from": "right"
+        },
+        {
+          "to": "bottom",
+          "from": "bottom"
+        }
+      ]
+    },
+    {
+      "col": 3,
+      "row": 9,
+      "type": "clues",
+      "values": [
+        "\"... JATO\"\\nLA PRESEN-\\nTADORA",
+        "MAGO DE..."
+      ],
+      "wordIds": [
+        14,
+        37
+      ],
+      "orientations": [
+        {
+          "to": "right",
+          "from": "right"
+        },
+        {
+          "to": "bottom",
+          "from": "bottom"
+        }
+      ]
+    },
+    {
+      "col": 4,
+      "row": 4,
+      "type": "clues",
+      "values": [
+        "BIN LADEN",
+        "NO\\nBAUTIZAN A\\nSUS HIJOS"
+      ],
+      "wordIds": [
+        6,
+        29
+      ],
+      "orientations": [
+        {
+          "to": "right",
+          "from": "right"
+        },
+        {
+          "to": "bottom",
+          "from": "bottom"
+        }
+      ]
+    },
+    {
+      "col": 4,
+      "row": 10,
+      "type": "clue",
+      "value": "TE LO SOS-\\nPECHABAS,\\nTE LO...",
+      "wordId": 16,
+      "orientation": {
+        "to": "right",
+        "from": "right"
+      }
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "type": "clues",
+      "values": [
+        "ADELANTA A\\nSUS\\nRIVALES",
+        "ANGUSTIA"
+      ],
+      "wordIds": [
+        21,
+        24
+      ],
+      "orientations": [
+        {
+          "to": "bottom",
+          "from": "right"
+        },
+        {
+          "to": "bottom",
+          "from": "bottom"
+        }
+      ]
+    },
+    {
+      "col": 5,
+      "row": 6,
+      "type": "clue",
+      "value": "HOMBRE\\nDE LA MÁS\\nPURA RAZA\\nBLANCA",
+      "wordId": 32,
+      "orientation": {
+        "to": "bottom",
+        "from": "bottom"
+      }
+    },
+    {
+      "col": 5,
+      "row": 11,
+      "type": "clue",
+      "value": "ELIJA,\\nESCOJA.",
+      "wordId": 18,
+      "orientation": {
+        "to": "right",
+        "from": "right"
+      }
+    },
+    {
+      "col": 6,
+      "row": 6,
+      "type": "clues",
+      "values": [
+        "QUÉ RISA,\\nPERDIÓ UN\\nPALO",
+        "RALLADOR"
+      ],
+      "wordIds": [
+        9,
+        33
+      ],
+      "orientations": [
+        {
+          "to": "right",
+          "from": "right"
+        },
+        {
+          "to": "bottom",
+          "from": "bottom"
+        }
+      ]
+    },
+    {
+      "col": 7,
+      "row": 0,
+      "type": "clue",
+      "value": "SU CAPITAL\\nES\\nPAMPLONA",
+      "wordId": 25,
+      "orientation": {
+        "to": "bottom",
+        "from": "bottom"
+      }
+    },
+    {
+      "col": 7,
+      "row": 8,
+      "type": "clues",
+      "values": [
+        "FACEBOOK",
+        "VERY\\nIMPORTANT\\nPERSON"
+      ],
+      "wordIds": [
+        12,
+        36
+      ],
+      "orientations": [
+        {
+          "to": "right",
+          "from": "right"
+        },
+        {
+          "to": "bottom",
+          "from": "bottom"
+        }
+      ]
+    },
+    {
+      "col": 8,
+      "row": 0,
+      "type": "clue",
+      "value": "ADVERBIO\\nQUE SEÑALA\\nDEMASÍA",
+      "wordId": 26,
+      "orientation": {
+        "to": "bottom",
+        "from": "bottom"
+      }
+    },
+    {
+      "col": 8,
+      "row": 7,
+      "type": "clue",
+      "value": "COCHE\\nITALIANO",
+      "wordId": 34,
+      "orientation": {
+        "to": "bottom",
+        "from": "bottom"
+      }
+    },
+    {
+      "col": 9,
+      "row": 0,
+      "type": "clue",
+      "value": "CANARIA\\nDEL TEMA\\n\"EL\\nTALISMÁN\"",
+      "wordId": 27,
+      "orientation": {
+        "to": "bottom",
+        "from": "bottom"
+      }
+    },
+    {
+      "col": 9,
+      "row": 7,
+      "type": "clue",
+      "value": "FUNDA-\\nMENTO O\\nAPOYO\\nPRINCIPAL\\nDE ALGO",
+      "wordId": 35,
+      "orientation": {
+        "to": "bottom",
+        "from": "bottom"
+      }
+    }
+  ],
+  "words": {
+    "vertical": [
+      {
+        "index": 1,
+        "wordId": 19,
+        "endIndex": 4,
+        "solution": "VERME",
+        "startIndex": 0
+      },
+      {
+        "index": 4,
+        "wordId": 20,
+        "endIndex": 3,
+        "solution": "MARC",
+        "startIndex": 0
+      },
+      {
+        "index": 6,
+        "wordId": 21,
+        "endIndex": 5,
+        "solution": "REBASA",
+        "startIndex": 0
+      },
+      {
+        "index": 2,
+        "wordId": 22,
+        "endIndex": 4,
+        "solution": "NEWT",
+        "startIndex": 1
+      },
+      {
+        "index": 3,
+        "wordId": 23,
+        "endIndex": 2,
+        "solution": "CP",
+        "startIndex": 1
+      },
+      {
+        "index": 5,
+        "wordId": 24,
+        "endIndex": 5,
+        "solution": "DOLOR",
+        "startIndex": 1
+      },
+      {
+        "index": 7,
+        "wordId": 25,
+        "endIndex": 7,
+        "solution": "NAVARRA",
+        "startIndex": 1
+      },
+      {
+        "index": 8,
+        "wordId": 26,
+        "endIndex": 6,
+        "solution": "ADEMAS",
+        "startIndex": 1
+      },
+      {
+        "index": 9,
+        "wordId": 27,
+        "endIndex": 6,
+        "solution": "ROSANA",
+        "startIndex": 1
+      },
+      {
+        "index": 3,
+        "wordId": 28,
+        "endIndex": 8,
+        "solution": "OPONE",
+        "startIndex": 4
+      },
+      {
+        "index": 4,
+        "wordId": 29,
+        "endIndex": 9,
+        "solution": "ATEAS",
+        "startIndex": 5
+      },
+      {
+        "index": 1,
+        "wordId": 30,
+        "endIndex": 11,
+        "solution": "ISABEL",
+        "startIndex": 6
+      },
+      {
+        "index": 2,
+        "wordId": 31,
+        "endIndex": 11,
+        "solution": "LAPEPA",
+        "startIndex": 6
+      },
+      {
+        "index": 5,
+        "wordId": 32,
+        "endIndex": 10,
+        "solution": "ARIO",
+        "startIndex": 7
+      },
+      {
+        "index": 6,
+        "wordId": 33,
+        "endIndex": 11,
+        "solution": "RALLO",
+        "startIndex": 7
+      },
+      {
+        "index": 8,
+        "wordId": 34,
+        "endIndex": 11,
+        "solution": "FIAT",
+        "startIndex": 8
+      },
+      {
+        "index": 9,
+        "wordId": 35,
+        "endIndex": 11,
+        "solution": "BASE",
+        "startIndex": 8
+      },
+      {
+        "index": 7,
+        "wordId": 36,
+        "endIndex": 11,
+        "solution": "VIP",
+        "startIndex": 9
+      },
+      {
+        "index": 3,
+        "wordId": 37,
+        "endIndex": 11,
+        "solution": "OZ",
+        "startIndex": 10
+      }
+    ],
+    "horizontal": [
+      {
+        "index": 1,
+        "wordId": 1,
+        "endIndex": 9,
+        "solution": "ENCADENAR",
+        "startIndex": 1
+      },
+      {
+        "index": 2,
+        "wordId": 2,
+        "endIndex": 9,
+        "solution": "REPROBADO",
+        "startIndex": 1
+      },
+      {
+        "index": 3,
+        "wordId": 3,
+        "endIndex": 2,
+        "solution": "MW",
+        "startIndex": 1
+      },
+      {
+        "index": 3,
+        "wordId": 4,
+        "endIndex": 9,
+        "solution": "CLAVES",
+        "startIndex": 4
+      },
+      {
+        "index": 4,
+        "wordId": 5,
+        "endIndex": 3,
+        "solution": "RETO",
+        "startIndex": 0
+      },
+      {
+        "index": 4,
+        "wordId": 6,
+        "endIndex": 9,
+        "solution": "OSAMA",
+        "startIndex": 5
+      },
+      {
+        "index": 5,
+        "wordId": 7,
+        "endIndex": 9,
+        "solution": "PARARAN",
+        "startIndex": 3
+      },
+      {
+        "index": 6,
+        "wordId": 8,
+        "endIndex": 4,
+        "solution": "GILOT",
+        "startIndex": 0
+      },
+      {
+        "index": 6,
+        "wordId": 9,
+        "endIndex": 9,
+        "solution": "RSA",
+        "startIndex": 7
+      },
+      {
+        "index": 7,
+        "wordId": 10,
+        "endIndex": 7,
+        "solution": "SANEARA",
+        "startIndex": 1
+      },
+      {
+        "index": 8,
+        "wordId": 11,
+        "endIndex": 6,
+        "solution": "APEARA",
+        "startIndex": 1
+      },
+      {
+        "index": 8,
+        "wordId": 12,
+        "endIndex": 9,
+        "solution": "FB",
+        "startIndex": 8
+      },
+      {
+        "index": 9,
+        "wordId": 13,
+        "endIndex": 2,
+        "solution": "BE",
+        "startIndex": 1
+      },
+      {
+        "index": 9,
+        "wordId": 14,
+        "endIndex": 9,
+        "solution": "SILVIA",
+        "startIndex": 4
+      },
+      {
+        "index": 10,
+        "wordId": 15,
+        "endIndex": 3,
+        "solution": "CEPO",
+        "startIndex": 0
+      },
+      {
+        "index": 10,
+        "wordId": 16,
+        "endIndex": 9,
+        "solution": "OLIAS",
+        "startIndex": 5
+      },
+      {
+        "index": 11,
+        "wordId": 17,
+        "endIndex": 4,
+        "solution": "LAZO",
+        "startIndex": 1
+      },
+      {
+        "index": 11,
+        "wordId": 18,
+        "endIndex": 9,
+        "solution": "OPTE",
+        "startIndex": 6
+      }
+    ]
+  },
+  "clues": [
+    {
+      "text": "LA JOVEN DE LA PERLA PARECE MIRARME.",
+      "col": 0,
+      "row": 0,
+      "direction": "bottom"
+    },
+    {
+      "text": "EL MAGIZOÓ- LOGO DE JK ROWLING",
+      "col": 2,
+      "row": 0,
+      "direction": "bottom"
+    },
+    {
+      "text": "... MÁRQUEZ (MOTO GP)",
+      "col": 3,
+      "row": 0,
+      "direction": "bottom"
+    },
+    {
+      "text": "CÓDIGO POSTAL",
+      "col": 3,
+      "row": 0,
+      "direction": "bottom"
+    },
+    {
+      "text": "ADELANTA A SUS RIVALES",
+      "col": 5,
+      "row": 0,
+      "direction": "bottom"
+    },
+    {
+      "text": "ANGUSTIA",
+      "col": 5,
+      "row": 0,
+      "direction": "bottom"
+    },
+    {
+      "text": "SU CAPITAL ES PAMPLONA",
+      "col": 7,
+      "row": 0,
+      "direction": "bottom"
+    },
+    {
+      "text": "ADVERBIO QUE SEÑALA DEMASÍA",
+      "col": 8,
+      "row": 0,
+      "direction": "bottom"
+    },
+    {
+      "text": "CANARIA DEL TEMA \"EL TALISMÁN\"",
+      "col": 9,
+      "row": 0,
+      "direction": "bottom"
+    },
+    {
+      "text": "ATAR CON CADENAS.",
+      "col": 0,
+      "row": 1,
+      "direction": "right"
+    },
+    {
+      "text": "NO HA LOGRADO NI UN 5",
+      "col": 0,
+      "row": 2,
+      "direction": "right"
+    },
+    {
+      "text": "MAISIE WILLIAM",
+      "col": 0,
+      "row": 3,
+      "direction": "right"
+    },
+    {
+      "text": "META PERSONAL",
+      "col": 0,
+      "row": 3,
+      "direction": "right"
+    },
+    {
+      "text": "CONTRA- SEÑAS",
+      "col": 3,
+      "row": 3,
+      "direction": "right"
+    },
+    {
+      "text": "SE PONE EN CONTRA",
+      "col": 3,
+      "row": 3,
+      "direction": "bottom"
+    },
+    {
+      "text": "BIN LADEN",
+      "col": 4,
+      "row": 4,
+      "direction": "right"
+    },
+    {
+      "text": "NO BAUTIZAN A SUS HIJOS",
+      "col": 4,
+      "row": 4,
+      "direction": "bottom"
+    },
+    {
+      "text": "FRANÇOISE ... (PINTORA FRANCESA)",
+      "col": 0,
+      "row": 5,
+      "direction": "right"
+    },
+    {
+      "text": "BAILES MAL CON LA REINA DE INGLA- TERRA",
+      "col": 1,
+      "row": 5,
+      "direction": "bottom"
+    },
+    {
+      "text": "DETENDRÁN",
+      "col": 2,
+      "row": 5,
+      "direction": "right"
+    },
+    {
+      "text": "CONSTITU- CIÓN DE 1812 (2P)",
+      "col": 2,
+      "row": 5,
+      "direction": "bottom"
+    },
+    {
+      "text": "HOMBRE DE LA MÁS PURA RAZA BLANCA",
+      "col": 5,
+      "row": 6,
+      "direction": "bottom"
+    },
+    {
+      "text": "QUÉ RISA, PERDIÓ UN PALO",
+      "col": 6,
+      "row": 6,
+      "direction": "right"
+    },
+    {
+      "text": "RALLADOR",
+      "col": 6,
+      "row": 6,
+      "direction": "bottom"
+    },
+    {
+      "text": "HIGIENI- ZARÁ",
+      "col": 0,
+      "row": 7,
+      "direction": "right"
+    },
+    {
+      "text": "COCHE ITALIANO",
+      "col": 8,
+      "row": 7,
+      "direction": "bottom"
+    },
+    {
+      "text": "FUNDA- MENTO O APOYO PRINCIPAL DE ALGO",
+      "col": 9,
+      "row": 7,
+      "direction": "bottom"
+    },
+    {
+      "text": "DESMON- TARÁ EL CABALLO",
+      "col": 0,
+      "row": 8,
+      "direction": "right"
+    },
+    {
+      "text": "FACEBOOK",
+      "col": 7,
+      "row": 8,
+      "direction": "right"
+    },
+    {
+      "text": "VERY IMPORTANT PERSON",
+      "col": 7,
+      "row": 8,
+      "direction": "bottom"
+    },
+    {
+      "text": "¡DAME LA B!...",
+      "col": 0,
+      "row": 9,
+      "direction": "right"
+    },
+    {
+      "text": "CAJA DE LIMOSNAS",
+      "col": 0,
+      "row": 9,
+      "direction": "right"
+    },
+    {
+      "text": "\"... JATO\" LA PRESEN- TADORA",
+      "col": 3,
+      "row": 9,
+      "direction": "right"
+    },
+    {
+      "text": "MAGO DE...",
+      "col": 3,
+      "row": 9,
+      "direction": "bottom"
+    },
+    {
+      "text": "TE LO SOS- PECHABAS, TE LO...",
+      "col": 4,
+      "row": 10,
+      "direction": "right"
+    },
+    {
+      "text": "NUDO DE CINTAS",
+      "col": 0,
+      "row": 11,
+      "direction": "right"
+    },
+    {
+      "text": "ELIJA, ESCOJA.",
+      "col": 5,
+      "row": 11,
+      "direction": "right"
+    }
+  ],
+  "total_clues": 37
+}
