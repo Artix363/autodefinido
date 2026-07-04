@@ -1,0 +1,553 @@
+{
+  "date": "2026-07-04",
+  "scraped_at": "2026-07-04T01:17:15.752394Z",
+  "source": "https://backend.smartgames.media/api/game/self_defined/last",
+  "grid_cols": 6,
+  "grid_rows": 6,
+  "grid": [
+    [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      0,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  ],
+  "board": [
+    {
+      "col": 0,
+      "row": 0,
+      "type": "block",
+      "value": "",
+      "solution": null
+    },
+    {
+      "col": 2,
+      "row": 2,
+      "type": "block",
+      "value": "",
+      "solution": null
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "type": "cell",
+      "value": "",
+      "solution": "P",
+      "wordIds": [
+        2,
+        13
+      ]
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "type": "cell",
+      "value": "",
+      "solution": "O",
+      "wordIds": [
+        3,
+        13
+      ]
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "type": "cell",
+      "value": "",
+      "solution": "P",
+      "wordIds": [
+        5,
+        13
+      ]
+    },
+    {
+      "col": 0,
+      "row": 4,
+      "type": "cell",
+      "value": "",
+      "solution": "I",
+      "wordIds": [
+        6,
+        13
+      ]
+    },
+    {
+      "col": 0,
+      "row": 5,
+      "type": "cell",
+      "value": "",
+      "solution": "T",
+      "wordIds": [
+        7,
+        13
+      ]
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "type": "cell",
+      "value": "",
+      "solution": "D",
+      "wordIds": [
+        1,
+        8
+      ]
+    },
+    {
+      "col": 1,
+      "row": 1,
+      "type": "cell",
+      "value": "",
+      "solution": "E",
+      "wordIds": [
+        2,
+        8
+      ]
+    },
+    {
+      "col": 1,
+      "row": 2,
+      "type": "cell",
+      "value": "",
+      "solution": "N",
+      "wordIds": [
+        3,
+        8
+      ]
+    },
+    {
+      "col": 1,
+      "row": 3,
+      "type": "cell",
+      "value": "",
+      "solution": "O",
+      "wordIds": [
+        5,
+        8
+      ]
+    },
+    {
+      "col": 1,
+      "row": 4,
+      "type": "cell",
+      "value": "",
+      "solution": "T",
+      "wordIds": [
+        6,
+        8
+      ]
+    },
+    {
+      "col": 1,
+      "row": 5,
+      "type": "cell",
+      "value": "",
+      "solution": "E",
+      "wordIds": [
+        7,
+        8
+      ]
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "type": "cell",
+      "value": "",
+      "solution": "E",
+      "wordIds": [
+        1,
+        9
+      ]
+    },
+    {
+      "col": 2,
+      "row": 1,
+      "type": "cell",
+      "value": "",
+      "solution": "S",
+      "wordIds": [
+        2,
+        9
+      ]
+    },
+    {
+      "col": 2,
+      "row": 3,
+      "type": "cell",
+      "value": "",
+      "solution": "L",
+      "wordIds": [
+        5,
+        14
+      ]
+    },
+    {
+      "col": 2,
+      "row": 4,
+      "type": "cell",
+      "value": "",
+      "solution": "E",
+      "wordIds": [
+        6,
+        14
+      ]
+    },
+    {
+      "col": 2,
+      "row": 5,
+      "type": "cell",
+      "value": "",
+      "solution": "T",
+      "wordIds": [
+        7,
+        14
+      ]
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "type": "cell",
+      "value": "",
+      "solution": "B",
+      "wordIds": [
+        1,
+        10
+      ]
+    },
+    {
+      "col": 3,
+      "row": 1,
+      "type": "cell",
+      "value": "",
+      "solution": "A",
+      "wordIds": [
+        2,
+        10
+      ]
+    },
+    {
+      "col": 3,
+      "row": 2,
+      "type": "cell",
+      "value": "",
+      "solution": "L",
+      "wordIds": [
+        4,
+        10
+      ]
+    },
+    {
+      "col": 3,
+      "row": 3,
+      "type": "cell",
+      "value": "",
+      "solution": "A",
+      "wordIds": [
+        5,
+        10
+      ]
+    },
+    {
+      "col": 3,
+      "row": 4,
+      "type": "cell",
+      "value": "",
+      "solution": "R",
+      "wordIds": [
+        6,
+        10
+      ]
+    },
+    {
+      "col": 3,
+      "row": 5,
+      "type": "cell",
+      "value": "",
+      "solution": "E",
+      "wordIds": [
+        7,
+        10
+      ]
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "type": "cell",
+      "value": "",
+      "solution": "U",
+      "wordIds": [
+        1,
+        11
+      ]
+    },
+    {
+      "col": 4,
+      "row": 1,
+      "type": "cell",
+      "value": "",
+      "solution": "B",
+      "wordIds": [
+        2,
+        11
+      ]
+    },
+    {
+      "col": 4,
+      "row": 2,
+      "type": "cell",
+      "value": "",
+      "solution": "I",
+      "wordIds": [
+        4,
+        11
+      ]
+    },
+    {
+      "col": 4,
+      "row": 3,
+      "type": "cell",
+      "value": "",
+      "solution": "C",
+      "wordIds": [
+        5,
+        11
+      ]
+    },
+    {
+      "col": 4,
+      "row": 4,
+      "type": "cell",
+      "value": "",
+      "solution": "A",
+      "wordIds": [
+        6,
+        11
+      ]
+    },
+    {
+      "col": 4,
+      "row": 5,
+      "type": "cell",
+      "value": "",
+      "solution": "R",
+      "wordIds": [
+        7,
+        11
+      ]
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "type": "cell",
+      "value": "",
+      "solution": "T",
+      "wordIds": [
+        1,
+        12
+      ]
+    },
+    {
+      "col": 5,
+      "row": 1,
+      "type": "cell",
+      "value": "",
+      "solution": "A",
+      "wordIds": [
+        2,
+        12
+      ]
+    },
+    {
+      "col": 5,
+      "row": 2,
+      "type": "cell",
+      "value": "",
+      "solution": "T",
+      "wordIds": [
+        4,
+        12
+      ]
+    },
+    {
+      "col": 5,
+      "row": 3,
+      "type": "cell",
+      "value": "",
+      "solution": "A",
+      "wordIds": [
+        5,
+        12
+      ]
+    },
+    {
+      "col": 5,
+      "row": 4,
+      "type": "cell",
+      "value": "",
+      "solution": "R",
+      "wordIds": [
+        6,
+        12
+      ]
+    },
+    {
+      "col": 5,
+      "row": 5,
+      "type": "cell",
+      "value": "",
+      "solution": "A",
+      "wordIds": [
+        7,
+        12
+      ]
+    }
+  ],
+  "words": {
+    "vertical": [
+      {
+        "index": 1,
+        "wordId": 8,
+        "endIndex": 5,
+        "solution": "DENOTE",
+        "startIndex": 0
+      },
+      {
+        "index": 2,
+        "wordId": 9,
+        "endIndex": 1,
+        "solution": "ES",
+        "startIndex": 0
+      },
+      {
+        "index": 3,
+        "wordId": 10,
+        "endIndex": 5,
+        "solution": "BALARE",
+        "startIndex": 0
+      },
+      {
+        "index": 4,
+        "wordId": 11,
+        "endIndex": 5,
+        "solution": "UBICAR",
+        "startIndex": 0
+      },
+      {
+        "index": 5,
+        "wordId": 12,
+        "endIndex": 5,
+        "solution": "TATARA",
+        "startIndex": 0
+      },
+      {
+        "index": 0,
+        "wordId": 13,
+        "endIndex": 5,
+        "solution": "POPIT",
+        "startIndex": 1
+      },
+      {
+        "index": 2,
+        "wordId": 14,
+        "endIndex": 5,
+        "solution": "LET",
+        "startIndex": 3
+      }
+    ],
+    "horizontal": [
+      {
+        "index": 0,
+        "wordId": 1,
+        "endIndex": 5,
+        "solution": "DEBUT",
+        "startIndex": 1
+      },
+      {
+        "index": 1,
+        "wordId": 2,
+        "endIndex": 5,
+        "solution": "PESABA",
+        "startIndex": 0
+      },
+      {
+        "index": 2,
+        "wordId": 3,
+        "endIndex": 1,
+        "solution": "ON",
+        "startIndex": 0
+      },
+      {
+        "index": 2,
+        "wordId": 4,
+        "endIndex": 5,
+        "solution": "LIT",
+        "startIndex": 3
+      },
+      {
+        "index": 3,
+        "wordId": 5,
+        "endIndex": 5,
+        "solution": "POLACA",
+        "startIndex": 0
+      },
+      {
+        "index": 4,
+        "wordId": 6,
+        "endIndex": 5,
+        "solution": "ITERAR",
+        "startIndex": 0
+      },
+      {
+        "index": 5,
+        "wordId": 7,
+        "endIndex": 5,
+        "solution": "TETERA",
+        "startIndex": 0
+      }
+    ]
+  },
+  "clues": [],
+  "total_clues": 0
+}
